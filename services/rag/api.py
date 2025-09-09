@@ -51,6 +51,31 @@ except Exception as e:
 # Initialize the model
 model = SentenceTransformer(MODEL_NAME)
 
+
+async def search_guidelines(query: str, top_k: int = 5) -> List[Dict[str, Any]]:
+    """
+    Wrapper function to search medical guidelines.
+    """
+    search_input = SearchQuery(query=query, top_k=top_k)
+    response = await search(search_input)
+
+    results = []
+    for r in response.results:
+        if isinstance(r, dict):
+            results.append({
+                "doc_id": r.get("doc_id"),
+                "page_num": r.get("page_num"),
+                "text": r.get("text")
+            })
+        else:  # object with attributes
+            results.append({
+                "doc_id": getattr(r, "doc_id", None),
+                "page_num": getattr(r, "page_num", None),
+                "text": getattr(r, "text", None)
+            })
+
+    return results
+
 class SearchQuery(BaseModel):
     """Input schema for search endpoint."""
     query: str

@@ -44,6 +44,32 @@ def root():
     """Root endpoint."""
     return {"msg": "Diabetes Agent API is running"}
 
+async def predict_risk(patient_data: dict) -> dict:
+    """Wrapper function to predict diabetes risk from patient data."""
+    # Convert patient data to model input format
+    model_input = {
+        "Pregnancies": 0,  # default for now
+        "Glucose": patient_data.get("glucose", 0),
+        "BloodPressure": float(patient_data.get("blood_pressure", "0/0").split("/")[0]),  # systolic
+        "SkinThickness": 0,  # not provided in patient data
+        "Insulin": 0,  # not provided in patient data
+        "BMI": patient_data.get("bmi", 0),
+        "DiabetesPedigreeFunction": 1.0 if patient_data.get("family_history") == "yes" else 0.0,
+        "Age": patient_data.get("age", 0)
+    }
+    
+    # Make prediction using the API endpoint
+    input_data = PredictionInput(**model_input)
+    result = await predict(input_data)   # <-- result is a dict
+    
+    # Format response
+    return {
+        "prediction": "high_risk" if result["label"] == 1 else "low_risk",
+        "probability": result["probability"],
+        "top_features": [f["name"] for f in result.get("top_features_shap", [])]
+    }
+
+
 @app.post("/predict", response_model=PredictionOutput)
 async def predict(data: PredictionInput):
     """Make prediction and return probability, label and SHAP explanations."""

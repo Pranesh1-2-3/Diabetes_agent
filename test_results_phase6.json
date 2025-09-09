@@ -1,0 +1,95 @@
+{
+  "High Risk Patient": {
+    "response": {
+      "conclusion": "Patient shows multiple high-risk factors for diabetes.",
+      "reasoning": [
+        "BMI is in the obese range, significantly increasing diabetes risk",
+        "Blood glucose levels are elevated above normal range",
+        "Family history and current lifestyle factors contribute to risk"
+      ],
+      "next_steps": [
+        "Immediate consultation with endocrinologist",
+        "Begin blood glucose monitoring",
+        "Lifestyle intervention program referral"
+      ],
+      "sources": [
+        {
+          "doc_id": "WHO_Fact_Sheet",
+          "page": 1,
+          "quote": "BMI > 30 indicates obesity, a major risk factor",
+          "relevance": "Confirms obesity diagnosis"
+        },
+        {
+          "doc_id": "IDF_Atlas",
+          "page": 2,
+          "quote": "Family history increases diabetes risk substantially",
+          "relevance": "Supports risk assessment"
+        }
+      ]
+    },
+    "metrics": {
+      "num_sources": 2,
+      "has_quotes": true,
+      "reasoning_steps": 3,
+      "has_next_steps": true
+    }
+  },
+  "Moderate Risk Patient": {
+    "response": {
+      "conclusion": "Patient shows low risk for diabetes at this time.",
+      "reasoning": [
+        "Vital signs within normal ranges",
+        "No significant risk factors present",
+        "Healthy lifestyle indicators"
+      ],
+      "next_steps": [
+        "Continue regular check-ups",
+        "Maintain healthy lifestyle",
+        "Annual screening"
+      ],
+      "sources": [
+        {
+          "doc_id": "IDF_Atlas",
+          "page": 4,
+          "quote": "Regular screening recommended even for low-risk patients",
+          "relevance": "Supports preventive care"
+        }
+      ]
+    },
+    "metrics": {
+      "num_sources": 1,
+      "has_quotes": true,
+      "reasoning_steps": 3,
+      "has_next_steps": true
+    }
+  },
+  "Low Risk Patient": {
+    "response": {
+      "conclusion": "Patient shows low risk for diabetes at this time.",
+      "reasoning": [
+        "Vital signs within normal ranges",
+        "No significant risk factors present",
+        "Healthy lifestyle indicators"
+      ],
+      "next_steps": [
+        "Continue regular check-ups",
+        "Maintain healthy lifestyle",
+        "Annual screening"
+      ],
+      "sources": [
+        {
+          "doc_id": "IDF_Atlas",
+          "page": 4,
+          "quote": "Regular screening recommended even for low-risk patients",
+          "relevance": "Supports preventive care"
+        }
+      ]
+    },
+    "metrics": {
+      "num_sources": 1,
+      "has_quotes": true,
+      "reasoning_steps": 3,
+      "has_next_steps": true
+    }
+  }
+}

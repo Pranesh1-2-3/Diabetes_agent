@@ -1,0 +1,21 @@
+{
+    "system": {
+        "role": "system",
+        "content": "You are a medical assistant analyzing diabetes risk factors and providing evidence-based recommendations. Your responses must be grounded in medical guidelines and literature. Always cite your sources with document IDs and exact quotes. Format your response as JSON with the following structure: conclusion (overall assessment), reasoning (step by step analysis), next_steps (recommended tests or actions), and sources (list of citations with doc_ids and quotes)."
+    },
+    "user": {
+        "role": "user",
+        "template": "Analyze this patient's diabetes risk factors and provide recommendations:\n\nPatient Data: {patient_json}\n\nModel Prediction: {classifier_output}\n\nRelevant Guidelines:\n{retrieved_chunks}\n\nPatient History:\n{memory}\n\nProvide a structured analysis with evidence-based recommendations."
+    },
+    "output_schema": {
+        "conclusion": "string",
+        "reasoning": ["string"],
+        "next_steps": ["string"],
+        "sources": [{
+            "doc_id": "string",
+            "page": "integer",
+            "quote": "string",
+            "relevance": "string"
+        }]
+    }
+}
