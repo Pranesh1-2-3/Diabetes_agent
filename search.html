@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diabetes Guidelines Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .result {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .metadata {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .score {
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <h1>Diabetes Guidelines Search</h1>
+    <div class="search-container">
+        <input type="text" id="searchQuery" placeholder="Enter your search query...">
+        <button onclick="performSearch()">Search</button>
+    </div>
+    <div id="results"></div>
+
+    <script>
+        async function performSearch() {
+            const query = document.getElementById('searchQuery').value;
+            const resultsDiv = document.getElementById('results');
+            
+            if (!query) {
+                resultsDiv.innerHTML = '<p>Please enter a search query</p>';
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:8000/search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        query: query,
+                        top_k: 3
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    let resultsHTML = '<h2>Search Results</h2>';
+                    
+                    data.results.forEach((result, index) => {
+                        resultsHTML += `
+                            <div class="result">
+                                <div class="metadata">
+                                    Document: ${result.doc_id} | 
+                                    Page: ${result.page_num} | 
+                                    <span class="score">Score: ${result.score.toFixed(3)}</span>
+                                </div>
+                                <div class="text">${result.text}</div>
+                            </div>
+                        `;
+                    });
+                    
+                    resultsDiv.innerHTML = resultsHTML;
+                } else {
+                    resultsDiv.innerHTML = `<p>Error: ${data.detail}</p>`;
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `<p>Error performing search: ${error.message}</p>`;
+            }
+        }
+
+        // Allow Enter key to trigger search
+        document.getElementById('searchQuery').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    </script>
+</body>
+</html>
