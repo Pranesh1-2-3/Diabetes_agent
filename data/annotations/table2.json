@@ -1,0 +1,14 @@
+{
+    "image_path": "../data/raw/sample_table2.png",
+    "fields": {
+        "Pregnancies": 8.0,
+        "Glucose": 183.0,
+        "BloodPressure": 64.0,
+        "SkinThickness": 0.0,
+        "Insulin": 0.0,
+        "BMI": 23.3,
+        "DiabetesPedigreeFunction": 0.672,
+        "Age": 32.0,
+        "Outcome": 1.0
+    }
+}

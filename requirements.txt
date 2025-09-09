@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pandas
+scikit-learn
+xgboost
+sentence-transformers
+faiss-cpu
+openai
+pytesseract
+camelot-py
+shap
