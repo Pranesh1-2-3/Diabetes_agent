@@ -1,9 +1,9 @@
 import json
+import re
 from pathlib import Path
+from services.agent import analyze_case
 
-from services.agent import DiabetesAgentHF
-
-# Example test cases (expand as needed)
+# Example test case
 TEST_CASES = {
     "case1": {
         "patient_data": {
@@ -11,64 +11,83 @@ TEST_CASES = {
             "gender": "male",
             "bmi": 29.4,
             "fasting_glucose": 132,
-            "hba1c": 7.1
+            "hba1c": 7.1,
         },
         "classifier_output": {
             "prediction": "likely_diabetes",
-            "probabilities": {"diabetes": 0.88, "no_diabetes": 0.12}
+            "probabilities": {"diabetes": 0.88, "no_diabetes": 0.12},
         },
         "retrieved_chunks": [
             {
                 "doc_id": "guideline1",
                 "page_num": 12,
-                "text": "Patients with fasting glucose >126 mg/dL or HbA1c >6.5% meet diagnostic criteria for diabetes."
+                "text": "Patients with fasting glucose >126 mg/dL or HbA1c >6.5% meet diagnostic criteria for diabetes.",
             }
         ],
         "memory": [
             {"date": "2023-09-01", "note": "Previous check-up showed borderline glucose levels."}
-        ]
+        ],
     }
 }
 
+def extract_json(text: str):
+    """
+    Extract the first valid JSON object from the model response.
+    Removes ```json fences and ignores extra prose.
+    """
+    if not text:
+        raise ValueError("Empty response from model")
+
+    # Remove code fences
+    text = re.sub(r"```(?:json)?", "", text).strip()
+
+    # Find the first {...} JSON block
+    match = re.search(r"\{.*\}", text, re.DOTALL)
+    if match:
+        try:
+            return json.loads(match.group(0))
+        except json.JSONDecodeError as e:
+            raise ValueError(f"Failed to decode JSON: {e}\nRaw block:\n{match.group(0)}")
+
+    raise ValueError(f"No JSON object found in response:\n{text[:500]}...")
 
 def run_test_case(case_name: str, case_data: dict):
-    """Run a single test case and return agent response + metrics."""
-    # Initialize HF agent (replace with your chosen model)
-    agent = DiabetesAgentHF(model_name="stabilityai/stablelm-tuned-alpha-7b")  # lightweight HF model
+    """Run a single test case and return the agent response."""
+    try:
+        raw_response = analyze_case(
+            patient_json=case_data["patient_data"],
+            classifier_output=case_data["classifier_output"],
+            retrieved_chunks=case_data["retrieved_chunks"],
+            memory=case_data.get("memory"),
+            model="llama-3.1-8b-instant"
+        )
 
-    response = agent.analyze(
-        patient_data=case_data["patient_data"],
-        classifier_output=case_data["classifier_output"],
-        retrieved_chunks=case_data["retrieved_chunks"],
-        memory=case_data.get("memory")
-    )
+        # Ensure response is valid JSON
+        response = extract_json(raw_response) if isinstance(raw_response, str) else raw_response
 
-    metrics = agent.evaluate_response(response)
+        print(f"\n=== {case_name.upper()} ===")
+        print(json.dumps(response, indent=2))  # pretty JSON output
 
-    print(f"\n=== {case_name} ===")
-    print("Conclusion:", response.conclusion)
-    print("Reasoning:", "\n - ".join(response.reasoning))
-    print("Next Steps:", "\n - ".join(response.next_steps))
-    print("Sources:", [s.dict() for s in response.sources])
-    print("Metrics:", metrics)
+        return response
 
-    return response, metrics
-
+    except Exception as e:
+        print(f"\n[ERROR] Test case {case_name} failed: {e}")
+        return None
 
 def main():
     results_dir = Path("results")
     results_dir.mkdir(exist_ok=True)
 
     for case_name, case_data in TEST_CASES.items():
-        response, metrics = run_test_case(case_name, case_data)
+        response = run_test_case(case_name, case_data)
 
-        # Save structured JSON output for inspection
-        output_file = results_dir / f"{case_name}_output.json"
-        with open(output_file, "w") as f:
-            json.dump(response.dict(), f, indent=2)
+        if response:
+            # Save structured JSON output
+            output_file = results_dir / f"{case_name}_groq_output.json"
+            with open(output_file, "w") as f:
+                json.dump(response, f, indent=2)
 
-        print(f"\nSaved results for {case_name} to {output_file}")
-
+            print(f"✅ Saved results for {case_name} to {output_file}")
 
 if __name__ == "__main__":
     main()

@@ -1,98 +1,63 @@
-"""LLM-based medical analysis agent using Hugging Face Transformers."""
-
+# services/agent.py
 import json
+import os
 from pathlib import Path
-from typing import Dict, List, Any, Optional
-from pydantic import BaseModel
-from transformers import pipeline, set_seed
+from groq import Groq
+from dotenv import load_dotenv
+import os
 
-class Source(BaseModel):
-    doc_id: str
-    page: int
-    quote: str
-    relevance: str
+load_dotenv()  # load variables from .env
+api_key = os.getenv("GROQ_API_KEY")
 
-class AnalysisResponse(BaseModel):
-    conclusion: str
-    reasoning: List[str]
-    next_steps: List[str]
-    sources: List[Source]
+# Path to your prompt template
+PROMPTS_PATH = Path(__file__).parent.parent / "prompts" / "diabetes_analysis.json"
 
-class DiabetesAgentHF:
-    """Agent for analyzing diabetes cases using Hugging Face."""
+class DiabetesAgent:
+    """Agent class for diabetes analysis using Groq LLM."""
+    
+    def __init__(self, model="llama-3.1-8b-instant"):
+        """Initialize the agent with Groq model."""
+        self.model = model
+        self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-    def __init__(self, model_name: str = "tiiuae/falcon-7b-instruct", max_input_length: int = 1024):
-        self.model_name = model_name
-        self.max_input_length = max_input_length
+    def build_prompt(self, patient_json, classifier_output, retrieved_chunks, memory):
+        """Build the final prompt from template."""
+        with open(PROMPTS_PATH) as f:
+            prompt_template = json.load(f)
 
-        # Hugging Face text-generation pipeline
-        self.generator = pipeline(
-            "text-generation",
-            model=self.model_name,
-            device=0,   # 0 for first GPU, -1 for CPU
-            max_length=1024,
-            do_sample=True,
-            temperature=0.1
-        )
+        system_msg = prompt_template["system"]
+        user_template = prompt_template["user"]["template"]
 
-        # Load prompts
-        prompts_dir = Path(__file__).parent.parent / "prompts"
-        with open(prompts_dir / "diabetes_analysis.json", encoding="utf-8") as f:
-            self.prompts = json.load(f)
-
-    def _build_prompt(
-        self,
-        patient_data: Dict[str, Any],
-        classifier_output: Dict[str, Any],
-        retrieved_chunks: List[Dict[str, Any]],
-        memory: Optional[List[Dict[str, Any]]] = None
-    ) -> str:
-        chunks_text = ""
-        for chunk in retrieved_chunks[:3]:  # limit number of chunks
-            chunks_text += f"\nDocument: {chunk['doc_id']}, Page: {chunk['page_num']}\n"
-            chunks_text += f"Content: {chunk['text'][:500]}...\n"
-
-        memory_text = ""
-        if memory:
-            memory_text = "\n".join(f"Date: {entry['date']}\n{entry['note'][:200]}..." for entry in memory)
-
-        prompt = self.prompts["user"]["template"].format(
-            patient_json=json.dumps(patient_data, indent=2)[:500],
+        user_msg = user_template.format(
+            patient_json=json.dumps(patient_json, indent=2),
             classifier_output=json.dumps(classifier_output, indent=2),
-            retrieved_chunks=chunks_text,
-            memory=memory_text or "No previous history available."
+            retrieved_chunks=json.dumps(retrieved_chunks, indent=2),
+            memory=json.dumps(memory, indent=2),
         )
 
-        # truncate prompt if too long
-        if len(prompt) > self.max_input_length:
-            prompt = prompt[:self.max_input_length] + "\n... [TRUNCATED]"
+        return system_msg, user_msg
 
-        return prompt
 
-    def analyze(
-        self,
-        patient_data: Dict[str, Any],
-        classifier_output: Dict[str, Any],
-        retrieved_chunks: List[Dict[str, Any]],
-        memory: Optional[List[Dict[str, Any]]] = None
-    ) -> AnalysisResponse:
-        prompt = self._build_prompt(patient_data, classifier_output, retrieved_chunks, memory)
+    def run_groq(self, system_msg, user_msg):
+        """Run Groq with system and user messages."""
+        messages = [
+            {"role": "system", "content": system_msg["content"]},
+            {"role": "user", "content": user_msg},
+        ]
 
-        # Generate text from Hugging Face model
-        output = self.generator(prompt, max_new_tokens=512)
-        output_text = output[0]["generated_text"]
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=messages,
+        )
 
-        # Parse JSON output
+        # The model is expected to return JSON (per your schema)
+        content = response.choices[0].message.content.strip()
         try:
-            result = json.loads(output_text)
-            return AnalysisResponse(**result)
-        except Exception as e:
-            raise ValueError(f"Invalid HF response format: {e}")
+            return json.loads(content)
+        except json.JSONDecodeError as e:
+            raise RuntimeError(f"Groq output is not valid JSON: {e}\nRaw output:\n{content}")
 
-    def evaluate_response(self, response: AnalysisResponse) -> Dict[str, Any]:
-        return {
-            "num_sources": len(response.sources),
-            "has_quotes": all(len(s.quote) > 0 for s in response.sources),
-            "reasoning_steps": len(response.reasoning),
-            "has_next_steps": len(response.next_steps) > 0
-        }
+    def analyze_case(self, patient_json, classifier_output, retrieved_chunks, memory):
+        """Main function to run the full agent pipeline with Groq."""
+        system_msg, user_msg = self.build_prompt(patient_json, classifier_output, retrieved_chunks, memory)
+        return self.run_groq(system_msg, user_msg)
