@@ -51,19 +51,26 @@ class MedicalTableParser:
 
     # -------------------- Public API -------------------- #
 
-    def parse_image(self, image_path: str) -> Dict[str, Any]:
-        """Parse a table from an image or PDF."""
-        ext = os.path.splitext(image_path)[1].lower()
+    def parse_image(self, image_input: Union[str, Image.Image]) -> Dict[str, Any]:
+        """Parse a table from an image path or PIL Image."""
         try:
-            if ext == ".pdf":
-                return self._parse_pdf(image_path)
-            elif self.use_advanced_model:
-                return self._parse_with_donut(image_path)
+            if isinstance(image_input, Image.Image):
+                image = image_input
+                ext = ".png"
             else:
-                return self._parse_with_tesseract(image_path)
+                ext = os.path.splitext(image_input)[1].lower()
+                image = Image.open(image_input)
+
+            if ext == ".pdf":
+                return self._parse_pdf(image_input)
+            elif self.use_advanced_model:
+                return self._parse_with_donut(image_input if isinstance(image_input, str) else image)
+            else:
+                return self._parse_with_tesseract(image_input if isinstance(image_input, str) else image)
         except Exception as e:
-            print(f"Error parsing {image_path}: {e}")
+            print(f"Error parsing {image_input}: {e}")
             return self._empty_result()
+
 
     # -------------------- Internal Helpers -------------------- #
 
@@ -83,26 +90,33 @@ class MedicalTableParser:
             print(f"PDF parsing error: {e}")
             return self._empty_result()
 
-    def _parse_with_tesseract(self, image_path: str) -> Dict[str, Any]:
-        """Parse an image table using Tesseract OCR and print raw output for debugging."""
+    def _parse_with_tesseract(self, image_input: Union[str, Image.Image]) -> Dict[str, Any]:
+        """Parse an image table using Tesseract OCR."""
         try:
-            image = Image.open(image_path)
+            # ✅ Open image correctly depending on input type
+            if isinstance(image_input, str):
+                if not os.path.exists(image_input):
+                    raise FileNotFoundError(f"Image path not found: {image_input}")
+                image = Image.open(image_input)
+            elif isinstance(image_input, Image.Image):
+                image = image_input
+            else:
+                raise TypeError(f"Invalid image input type: {type(image_input)}")
+
+            # ✅ Perform OCR
             text = pytesseract.image_to_string(image, config="--psm 6")
 
-            # 🔍 Print raw OCR output for debugging
-            print(f"\n===== OCR OUTPUT FOR {os.path.basename(image_path)} =====")
-            print(text)
-            print("===== END OCR OUTPUT =====\n")
+            print(f"\n===== OCR OUTPUT =====\n{text}\n=======================\n")
 
-            # Try splitting into structured data
+            # Split into lines
             lines = [line.strip() for line in text.splitlines() if line.strip()]
             if len(lines) < 2:
                 print("⚠️ Not enough lines detected by OCR.")
                 return self._empty_result()
 
             data = [re.split(r"\s+", line) for line in lines]
-
             df = pd.DataFrame(data[1:], columns=data[0]) if len(data) > 1 else pd.DataFrame()
+
             if df.empty:
                 print("⚠️ DataFrame is empty after parsing OCR output.")
                 return self._empty_result()
@@ -112,6 +126,7 @@ class MedicalTableParser:
             print("============================\n")
 
             return self._extract_fields_from_df(df)
+
         except Exception as e:
             print(f"Tesseract parsing error: {e}")
             return self._empty_result()

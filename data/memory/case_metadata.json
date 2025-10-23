@@ -1,0 +1,304 @@
+{
+  "CASE_0f1bd735": {
+    "case_id": "CASE_0f1bd735",
+    "timestamp": "2025-10-21T13:50:46.984027",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.8229512572288513,
+      "conclusion": "The patient is at high risk of developing diabetes due to their high glucose levels, insulin levels, and diabetes pedigree function. They should be advised to make lifestyle changes, including a healthy diet, regular physical activity, and maintaining a normal body weight to prevent or delay the onset of type 2 diabetes.",
+      "next_steps": [
+        "Recommend a healthy diet, including a balanced intake of carbohydrates, proteins, and fats.",
+        "Advise the patient to engage in regular physical activity, such as walking, cycling, or swimming, for at least 150 minutes per week.",
+        "Encourage the patient to maintain a normal body weight through a combination of diet and exercise.",
+        "Screen the patient for complications of diabetes, such as kidney disease, eye disease, and nerve damage.",
+        "Prescribe medication to lower blood sugar and blood pressure if necessary."
+      ],
+      "evidence": [
+        {
+          "source": "WHO_Fact_Sheet",
+          "quote": "Diabetes can be treated and its consequences avoided or delayed with diet, physical activity, medication and regular screening and treatment for complications."
+        },
+        {
+          "source": "IDF_Atlas",
+          "quote": "589 million adults (20-79 years) are living with diabetes \u2013 1 in 9."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 6,
+      "Glucose": 165,
+      "BloodPressure": 88,
+      "SkinThickness": 35,
+      "Insulin": 200,
+      "BMI": 33.0,
+      "DiabetesPedigreeFunction": 0.8,
+      "Age": 50,
+      "case_id": "CASE_0f1bd735"
+    },
+    "index": 0
+  },
+  "CASE_c42b2748": {
+    "case_id": "CASE_c42b2748",
+    "timestamp": "2025-10-21T14:18:45.756363",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.00017583122826181352,
+      "conclusion": "The patient is classified as low-risk for diabetes, but it is essential to monitor their blood glucose levels and maintain a healthy lifestyle to prevent the onset of type 2 diabetes.",
+      "next_steps": [
+        "Monitor the patient's blood glucose levels regularly to detect any potential issues early on.",
+        "Recommend a healthy lifestyle to the patient, including a balanced diet, regular physical activity, and maintaining a healthy body weight.",
+        "Consider referring the patient to a healthcare professional for further evaluation and guidance on managing their blood glucose levels."
+      ],
+      "evidence": [
+        {
+          "source": "WHO_Fact_Sheet",
+          "quote": "Lifestyle changes are the best way to prevent or delay the onset of type 2 diabetes."
+        },
+        {
+          "source": "WHO_Fact_Sheet",
+          "quote": "Diabetes can be treated and its consequences avoided or delayed with diet, physical activity, medication and regular screening and treatment for complications."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 1,
+      "Glucose": 95,
+      "BloodPressure": 70,
+      "SkinThickness": 22,
+      "Insulin": 85,
+      "BMI": 24.5,
+      "DiabetesPedigreeFunction": 0.2,
+      "Age": 25,
+      "case_id": "CASE_c42b2748"
+    },
+    "index": 0
+  },
+  "CASE_66ab1394": {
+    "case_id": "CASE_66ab1394",
+    "timestamp": "2025-10-23T13:56:29.249507",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.00017583122826181352,
+      "conclusion": "The patient is at low risk for diabetes, but regular screening and treatment for complications are recommended.",
+      "next_steps": [
+        "Recommend regular screening for complications, such as foot care, kidney disease, and eye exams.",
+        "Encourage the patient to maintain a healthy diet, engage in regular physical activity, and maintain a normal body weight to prevent or delay the onset of type 2 diabetes.",
+        "Monitor the patient's blood glucose levels and adjust treatment as needed."
+      ],
+      "evidence": [
+        {
+          "source": "",
+          "quote": "World Health Organization (WHO) Fact Sheet on Diabetes"
+        },
+        {
+          "source": "",
+          "quote": "International Diabetes Federation (IDF) Atlas"
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 1,
+      "Glucose": 95.0,
+      "BloodPressure": 70.0,
+      "SkinThickness": 22.0,
+      "Insulin": 85.0,
+      "BMI": 24.5,
+      "DiabetesPedigreeFunction": 0.2,
+      "Age": 25,
+      "min_similarity": 0.975,
+      "case_id": "CASE_66ab1394"
+    },
+    "index": 0
+  },
+  "CASE_41b08eb6": {
+    "case_id": "CASE_41b08eb6",
+    "timestamp": "2025-10-22T23:37:01.447315",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.8229512572288513,
+      "conclusion": "The patient is at high risk of developing diabetes based on their medical history, blood test results, and family history.",
+      "next_steps": [
+        "Recommend a healthy diet and regular physical activity to the patient to help prevent or delay the onset of type 2 diabetes.",
+        "Monitor the patient's blood glucose levels regularly to track their progress and make any necessary adjustments to their treatment plan.",
+        "Consider prescribing medication to the patient to help lower their blood glucose levels and reduce their risk of developing complications associated with diabetes.",
+        "Refer the patient to a specialist, such as an endocrinologist, for further evaluation and treatment if necessary."
+      ],
+      "evidence": [
+        {
+          "source": "",
+          "quote": ""
+        },
+        {
+          "source": "",
+          "quote": ""
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 6,
+      "Glucose": 165.0,
+      "BloodPressure": 88.0,
+      "SkinThickness": 35.0,
+      "Insulin": 200.0,
+      "BMI": 33.0,
+      "DiabetesPedigreeFunction": 0.8,
+      "Age": 50,
+      "min_similarity": 0.975,
+      "case_id": "CASE_41b08eb6"
+    },
+    "index": 1
+  },
+  "CASE_b2055139": {
+    "case_id": "CASE_b2055139",
+    "timestamp": "2025-10-22T23:58:08.864506",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.0012665705289691687,
+      "conclusion": "Patient has low risk of diabetes based on provided data and medical guidelines.",
+      "next_steps": [
+        "Recommend lifestyle changes to the patient to help prevent or delay the onset of type 2 diabetes.",
+        "Monitor the patient's glucose levels and BMI regularly to ensure they remain within the normal range.",
+        "Provide education to the patient on the importance of maintaining a healthy lifestyle and managing blood sugar levels."
+      ],
+      "evidence": [
+        {
+          "source": "",
+          "quote": "World Health Organization (WHO) Fact Sheet on Diabetes"
+        },
+        {
+          "source": "",
+          "quote": "International Diabetes Federation (IDF) Atlas"
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 0.0,
+      "BloodPressure": 0.0,
+      "SkinThickness": 0.0,
+      "Insulin": 0.0,
+      "BMI": 0.0,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 0,
+      "min_similarity": 0.975,
+      "case_id": "CASE_b2055139"
+    },
+    "index": 1
+  },
+  "CASE_1cd0b5ff": {
+    "case_id": "CASE_1cd0b5ff",
+    "timestamp": "2025-10-23T13:50:26.036549",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.9665324687957764,
+      "conclusion": "The patient is at high risk of developing diabetes based on the provided data and medical guidelines.",
+      "next_steps": [
+        "Recommend a healthy diet and regular physical activity to the patient.",
+        "Advise the patient to maintain a normal body weight and avoid tobacco use.",
+        "Schedule regular check-ups for the patient to monitor their blood sugar and blood pressure levels.",
+        "Prescribe medications to lower blood sugar and blood pressure if necessary.",
+        "Refer the patient to a specialist for further evaluation and treatment if necessary."
+      ],
+      "evidence": [
+        {
+          "source": "",
+          "quote": ""
+        },
+        {
+          "source": "",
+          "quote": ""
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 6,
+      "Glucose": 148.0,
+      "BloodPressure": 72.0,
+      "SkinThickness": 35.0,
+      "Insulin": 0.0,
+      "BMI": 33.6,
+      "DiabetesPedigreeFunction": 0.627,
+      "Age": 50,
+      "min_similarity": 0.975,
+      "case_id": "CASE_1cd0b5ff"
+    },
+    "index": 1
+  },
+  "CASE_30dfe4d6": {
+    "case_id": "CASE_30dfe4d6",
+    "timestamp": "2025-10-23T13:54:41.517607",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.9804808497428894,
+      "conclusion": "The patient is at high risk of developing diabetes based on the provided medical data and guidelines.",
+      "next_steps": [
+        "Recommend the patient to adopt a healthy lifestyle, including a balanced diet, regular exercise, and weight management. Schedule regular check-ups to monitor blood sugar levels and detect any potential complications early on."
+      ],
+      "evidence": [
+        {
+          "source": "",
+          "quote": "WHO_Fact_Sheet: Diabetes"
+        },
+        {
+          "source": "",
+          "quote": "IDF_Atlas: Global Diabetes Data & Statistics"
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 8,
+      "Glucose": 183.0,
+      "BloodPressure": 64.0,
+      "SkinThickness": 0.0,
+      "Insulin": 0.0,
+      "BMI": 23.3,
+      "DiabetesPedigreeFunction": 0.672,
+      "Age": 32,
+      "min_similarity": 0.975,
+      "case_id": "CASE_30dfe4d6"
+    },
+    "index": 2
+  }
+}

@@ -5,6 +5,7 @@ from pathlib import Path
 from groq import Groq
 from dotenv import load_dotenv
 import os
+from fastapi import HTTPException
 
 load_dotenv()  # load variables from .env
 api_key = os.getenv("GROQ_API_KEY")
@@ -52,10 +53,15 @@ class DiabetesAgent:
 
         # The model is expected to return JSON (per your schema)
         content = response.choices[0].message.content.strip()
+        if not content:
+            raise HTTPException(status_code=500, detail="Groq returned empty response")
         try:
             return json.loads(content)
         except json.JSONDecodeError as e:
-            raise RuntimeError(f"Groq output is not valid JSON: {e}\nRaw output:\n{content}")
+                raise HTTPException(
+        status_code=500,
+        detail=f"Groq returned invalid JSON: {content}\n\nError: {str(e)}"
+    )
 
     def analyze_case(self, patient_json, classifier_output, retrieved_chunks, memory):
         """Main function to run the full agent pipeline with Groq."""
