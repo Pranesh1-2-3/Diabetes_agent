@@ -87,7 +87,7 @@
   },
   "CASE_66ab1394": {
     "case_id": "CASE_66ab1394",
-    "timestamp": "2025-10-23T13:56:29.249507",
+    "timestamp": "2025-10-29T19:18:04.268037",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
@@ -97,20 +97,20 @@
     "synopsis": {
       "risk_level": "low_risk",
       "confidence": 0.00017583122826181352,
-      "conclusion": "The patient is at low risk for diabetes, but regular screening and treatment for complications are recommended.",
+      "conclusion": "Based on your test results, you are at low risk for diabetes. Your blood glucose level is within the normal range, and your other health metrics are also favorable. However, it's essential to maintain a healthy lifestyle to prevent any potential complications in the future.",
       "next_steps": [
-        "Recommend regular screening for complications, such as foot care, kidney disease, and eye exams.",
-        "Encourage the patient to maintain a healthy diet, engage in regular physical activity, and maintain a normal body weight to prevent or delay the onset of type 2 diabetes.",
-        "Monitor the patient's blood glucose levels and adjust treatment as needed."
+        "Continue to monitor your blood glucose levels regularly to ensure they remain within the normal range.",
+        "Maintain a healthy diet, rich in fruits, vegetables, and whole grains, to support your overall health and well-being.",
+        "Engage in regular physical activity, such as walking or other exercises, to help regulate your blood sugar levels and maintain a healthy weight."
       ],
       "evidence": [
         {
-          "source": "",
-          "quote": "World Health Organization (WHO) Fact Sheet on Diabetes"
+          "source": "WHO_Management",
+          "quote": "Unless the blood pressure is severely elevated, diagnosis should usually be based on high blood pressure (BP) measurements made under standard conditions on at least three occasions."
         },
         {
-          "source": "",
-          "quote": "International Diabetes Federation (IDF) Atlas"
+          "source": "ICMR_Type2",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
         }
       ]
     },
@@ -174,7 +174,7 @@
   },
   "CASE_b2055139": {
     "case_id": "CASE_b2055139",
-    "timestamp": "2025-10-22T23:58:08.864506",
+    "timestamp": "2025-10-30T01:09:51.809550",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
@@ -184,20 +184,19 @@
     "synopsis": {
       "risk_level": "low_risk",
       "confidence": 0.0012665705289691687,
-      "conclusion": "Patient has low risk of diabetes based on provided data and medical guidelines.",
+      "conclusion": "Congratulations, you are at low risk for diabetes! Your test results show that you have a very low chance of developing diabetes. This is great news, and it's essential to continue taking care of your health to maintain this low risk.",
       "next_steps": [
-        "Recommend lifestyle changes to the patient to help prevent or delay the onset of type 2 diabetes.",
-        "Monitor the patient's glucose levels and BMI regularly to ensure they remain within the normal range.",
-        "Provide education to the patient on the importance of maintaining a healthy lifestyle and managing blood sugar levels."
+        "Continue to maintain a healthy lifestyle, including a balanced diet and regular exercise. This will help you stay at low risk for diabetes and overall good health.",
+        "Schedule a follow-up appointment with your doctor to review your test results and discuss any further recommendations or actions you should take."
       ],
       "evidence": [
         {
-          "source": "",
-          "quote": "World Health Organization (WHO) Fact Sheet on Diabetes"
+          "source": "WHO_Management",
+          "quote": "Unless the blood pressure is severely elevated, diagnosis should usually be based on high blood pressure (BP) measurements made under standard conditions on at least three occasions."
         },
         {
-          "source": "",
-          "quote": "International Diabetes Federation (IDF) Atlas"
+          "source": "ICMR_Type2",
+          "quote": "The diagnostic criteria for diabetes and prediabetes are summarized in Table 3.1."
         }
       ]
     },
@@ -217,7 +216,7 @@
   },
   "CASE_1cd0b5ff": {
     "case_id": "CASE_1cd0b5ff",
-    "timestamp": "2025-10-23T13:50:26.036549",
+    "timestamp": "2025-10-30T01:08:06.829968",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
@@ -227,22 +226,19 @@
     "synopsis": {
       "risk_level": "high_risk",
       "confidence": 0.9665324687957764,
-      "conclusion": "The patient is at high risk of developing diabetes based on the provided data and medical guidelines.",
+      "conclusion": "Based on your test results, you're at high risk for developing diabetes. It's essential to take proactive steps to manage your condition and prevent complications.",
       "next_steps": [
-        "Recommend a healthy diet and regular physical activity to the patient.",
-        "Advise the patient to maintain a normal body weight and avoid tobacco use.",
-        "Schedule regular check-ups for the patient to monitor their blood sugar and blood pressure levels.",
-        "Prescribe medications to lower blood sugar and blood pressure if necessary.",
-        "Refer the patient to a specialist for further evaluation and treatment if necessary."
+        "Schedule an appointment with your doctor to discuss your test results and create a personalized plan to manage your condition.",
+        "Start monitoring your blood glucose levels regularly to track any changes and make adjustments to your diet and exercise routine as needed."
       ],
       "evidence": [
         {
-          "source": "",
-          "quote": ""
+          "source": "WHO_Management",
+          "quote": "Unless the blood pressure is severely elevated, diagnosis should usually be based on high blood pressure (BP) measurements made under standard conditions on at least three occasions."
         },
         {
-          "source": "",
-          "quote": ""
+          "source": "ICMR_Type2",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
         }
       ]
     },
@@ -262,7 +258,7 @@
   },
   "CASE_30dfe4d6": {
     "case_id": "CASE_30dfe4d6",
-    "timestamp": "2025-10-23T13:54:41.517607",
+    "timestamp": "2025-10-29T19:17:48.286454",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
@@ -272,18 +268,20 @@
     "synopsis": {
       "risk_level": "high_risk",
       "confidence": 0.9804808497428894,
-      "conclusion": "The patient is at high risk of developing diabetes based on the provided medical data and guidelines.",
+      "conclusion": "Based on your test results, you are at a high risk of developing diabetes. Your blood glucose level is higher than normal, and you have several other risk factors, including a high BMI and a family history of diabetes. It's essential to take proactive steps to manage your health and prevent the development of diabetes.",
       "next_steps": [
-        "Recommend the patient to adopt a healthy lifestyle, including a balanced diet, regular exercise, and weight management. Schedule regular check-ups to monitor blood sugar levels and detect any potential complications early on."
+        "Schedule an appointment with your doctor to discuss your test results and develop a plan to manage your health and prevent the development of diabetes.",
+        "Start monitoring your blood glucose levels regularly to track any changes and make adjustments to your diet and exercise routine as needed.",
+        "Make healthy lifestyle changes, such as eating a balanced diet, exercising regularly, and maintaining a healthy weight, to reduce your risk of developing diabetes."
       ],
       "evidence": [
         {
-          "source": "",
-          "quote": "WHO_Fact_Sheet: Diabetes"
+          "source": "ICMR_Type2",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
         },
         {
-          "source": "",
-          "quote": "IDF_Atlas: Global Diabetes Data & Statistics"
+          "source": "WHO_Management",
+          "quote": "The presence of target-organ damage (e.g. retinal, renal or cardiovascular) should be evaluated."
         }
       ]
     },
@@ -300,5 +298,428 @@
       "case_id": "CASE_30dfe4d6"
     },
     "index": 2
+  },
+  "CASE_012aac7f": {
+    "case_id": "CASE_012aac7f",
+    "timestamp": "2025-10-30T00:59:30.871280",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.000620243779849261,
+      "conclusion": "You're at low risk for diabetes, congratulations! Your blood glucose level is within a healthy range, and your blood pressure is also under control. However, it's essential to maintain a healthy lifestyle to prevent any potential complications.",
+      "next_steps": [
+        "Continue to monitor your blood glucose and blood pressure levels regularly to ensure they remain within a healthy range.",
+        "Maintain a healthy diet and regular exercise routine to prevent any potential weight gain and reduce your risk of developing insulin resistance."
+      ],
+      "evidence": [
+        {
+          "source": "WHO_Management",
+          "quote": "Unless the blood pressure is severely elevated, diagnosis should usually be based on high blood pressure (BP) measurements made under standard conditions on at least three occasions."
+        },
+        {
+          "source": "ICMR_Type2",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 2,
+      "Glucose": 85.0,
+      "BloodPressure": 66.0,
+      "SkinThickness": 29.0,
+      "Insulin": 0.0,
+      "BMI": 26.6,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 31,
+      "min_similarity": 0.975,
+      "case_id": "CASE_012aac7f"
+    },
+    "index": 2
+  },
+  "CASE_2469b4fa": {
+    "case_id": "CASE_2469b4fa",
+    "timestamp": "2025-10-30T01:06:45.523996",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.21640950441360474,
+      "conclusion": "You have a low risk of developing diabetes, but it's essential to maintain a healthy lifestyle to prevent complications. Your blood pressure is a bit high, so we need to work on that.",
+      "next_steps": [
+        "Start by making healthy lifestyle changes, such as eating a balanced diet, exercising regularly, and losing weight.",
+        "Monitor your blood pressure regularly and work with your doctor to develop a plan to lower it."
+      ],
+      "evidence": [
+        {
+          "source": "WHO_Management",
+          "quote": "Unless the blood pressure is severely elevated, diagnosis should usually be based on high blood pressure (BP) measurements made under standard conditions on at least three occasions."
+        },
+        {
+          "source": "ICMR_Type2",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 7,
+      "Glucose": 147.0,
+      "BloodPressure": 76.0,
+      "SkinThickness": 0.0,
+      "Insulin": 0.0,
+      "BMI": 39.4,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 34,
+      "min_similarity": 0.975,
+      "case_id": "CASE_2469b4fa"
+    },
+    "index": 0
+  },
+  "CASE_e7de37fc": {
+    "case_id": "CASE_e7de37fc",
+    "timestamp": "2025-10-30T01:02:01.866706",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.9363113641738892,
+      "conclusion": "You have a high risk of developing diabetes based on your test results. It's essential to take proactive steps to manage your condition and prevent complications.",
+      "next_steps": [
+        "Get regular check-ups with your doctor to monitor your glucose levels and adjust your treatment plan as needed.",
+        "Start a healthy diet that includes plenty of fruits, vegetables, whole grains, and lean protein sources. Aim to eat at least 5 servings of fruits and vegetables per day.",
+        "Increase your physical activity by aiming for at least 150 minutes of moderate-intensity exercise or 75 minutes of vigorous-intensity exercise per week."
+      ],
+      "evidence": [
+        {
+          "source": "ICMR_Type2",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        },
+        {
+          "source": "WHO_Management",
+          "quote": "Treatment should initially be based on nonpharmacological therapy, namely weight reduction, dietary modification, increased physical activity and smoking cessation."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 8,
+      "Glucose": 183.0,
+      "BloodPressure": 64.0,
+      "SkinThickness": 0.0,
+      "Insulin": 0.0,
+      "BMI": 23.3,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 32,
+      "min_similarity": 0.975,
+      "case_id": "CASE_e7de37fc"
+    },
+    "index": 1
+  },
+  "CASE_c9395e02": {
+    "case_id": "CASE_c9395e02",
+    "timestamp": "2025-10-30T01:02:31.771070",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.000369173038052395,
+      "conclusion": "You're at low risk for diabetes, but it's essential to maintain a healthy lifestyle to prevent the condition. Your blood glucose level is within the normal range, and your blood pressure is also under control. Keep up the good work!",
+      "next_steps": [
+        "Continue to monitor your blood glucose and blood pressure levels regularly to ensure they remain within the normal range.",
+        "Schedule a follow-up appointment with your doctor in 6 months to review your progress and make any necessary adjustments to your treatment plan."
+      ],
+      "evidence": [
+        {
+          "source": "WHO_Management",
+          "quote": "Unless the blood pressure is severely elevated, diagnosis should usually be based on high blood pressure (BP) measurements made under standard conditions on at least three occasions."
+        },
+        {
+          "source": "ICMR_Type2",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 1,
+      "Glucose": 89.0,
+      "BloodPressure": 66.0,
+      "SkinThickness": 23.0,
+      "Insulin": 94.0,
+      "BMI": 28.1,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 21,
+      "min_similarity": 0.975,
+      "case_id": "CASE_c9395e02"
+    },
+    "index": 3
+  },
+  "CASE_1c16dbc1": {
+    "case_id": "CASE_1c16dbc1",
+    "timestamp": "2025-10-30T01:03:40.968932",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.9487403035163879,
+      "conclusion": "You have a high risk of developing diabetes, and it's essential to take immediate action to manage your blood sugar levels and blood pressure. Your doctor will work with you to create a personalized plan to prevent or delay the onset of diabetes.",
+      "next_steps": [
+        "Schedule an appointment with your doctor to discuss your risk factors and create a plan to manage your blood sugar levels and blood pressure.",
+        "Start making healthy lifestyle changes, such as eating a balanced diet, exercising regularly, and losing weight if you're overweight or obese."
+      ],
+      "evidence": [
+        {
+          "source": "WHO_Management",
+          "quote": "Unless the blood pressure is severely elevated, diagnosis should usually be based on high blood pressure (BP) measurements made under standard conditions on at least three occasions."
+        },
+        {
+          "source": "ICMR_Type2",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 137.0,
+      "BloodPressure": 40.0,
+      "SkinThickness": 35.0,
+      "Insulin": 168.0,
+      "BMI": 43.1,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 33,
+      "min_similarity": 0.975,
+      "case_id": "CASE_1c16dbc1"
+    },
+    "index": 3
+  },
+  "CASE_73661b09": {
+    "case_id": "CASE_73661b09",
+    "timestamp": "2025-10-30T01:04:10.978953",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.003522241720929742,
+      "conclusion": "You're at low risk for diabetes, but it's essential to maintain a healthy lifestyle to prevent the condition. Your blood pressure is within a safe range, and your BMI is slightly above the ideal weight. To manage your health, focus on a balanced diet, regular physical activity, and stress management.",
+      "next_steps": [
+        "Get regular check-ups with your doctor to monitor your blood glucose and blood pressure. Maintain a healthy diet, rich in fruits, vegetables, and whole grains. Engage in regular physical activity, such as walking or jogging, for at least 30 minutes a day.",
+        "Consider consulting a registered dietitian or a nutritionist to create a personalized meal plan. Start a stress management program, such as meditation or yoga, to reduce stress and anxiety."
+      ],
+      "evidence": [
+        {
+          "source": "WHO_Management",
+          "quote": "Unless the blood pressure is severely elevated, diagnosis should usually be based on high blood pressure (BP) measurements made under standard conditions on at least three occasions."
+        },
+        {
+          "source": "ICMR_Type2",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 5,
+      "Glucose": 116.0,
+      "BloodPressure": 74.0,
+      "SkinThickness": 0.0,
+      "Insulin": 0.0,
+      "BMI": 25.6,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 30,
+      "min_similarity": 0.975,
+      "case_id": "CASE_73661b09"
+    },
+    "index": 4
+  },
+  "CASE_34eda9d9": {
+    "case_id": "CASE_34eda9d9",
+    "timestamp": "2025-10-30T01:04:58.176144",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.0003361122217029333,
+      "conclusion": "You're at low risk for diabetes, congratulations! However, it's essential to maintain a healthy lifestyle to prevent any potential complications. You should focus on a balanced diet, regular physical activity, and stress management.",
+      "next_steps": [
+        "Continue to monitor your blood sugar levels regularly and maintain a healthy lifestyle to prevent any potential complications.",
+        "Consult with your doctor to discuss your results and create a personalized plan to maintain your health."
+      ],
+      "evidence": [
+        {
+          "source": "WHO_Management",
+          "quote": "Unless the blood pressure is severely elevated, diagnosis should usually be based on high blood pressure (BP) measurements made under standard conditions on at least three occasions."
+        },
+        {
+          "source": "ICMR_Type2",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 3,
+      "Glucose": 78.0,
+      "BloodPressure": 50.0,
+      "SkinThickness": 32.0,
+      "Insulin": 88.0,
+      "BMI": 31.0,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 26,
+      "min_similarity": 0.975,
+      "case_id": "CASE_34eda9d9"
+    },
+    "index": 5
+  },
+  "CASE_38d70960": {
+    "case_id": "CASE_38d70960",
+    "timestamp": "2025-10-30T01:05:34.048193",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.030197376385331154,
+      "conclusion": "You're at a low risk for diabetes, but it's essential to take proactive steps to maintain your health. Your high BMI and glucose levels are areas of concern that need attention.",
+      "next_steps": [
+        "Schedule a follow-up appointment with your doctor to discuss your test results and create a personalized plan to manage your weight and glucose levels.",
+        "Start making healthy lifestyle changes, such as eating a balanced diet, engaging in regular physical activity, and quitting smoking, to reduce your risk for diabetes and other health issues."
+      ],
+      "evidence": [
+        {
+          "source": "WHO_Management",
+          "quote": "Unless the blood pressure is severely elevated, diagnosis should usually be based on high blood pressure (BP) measurements made under standard conditions on at least three occasions."
+        },
+        {
+          "source": "ICMR_Type2",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 10,
+      "Glucose": 115.0,
+      "BloodPressure": 0.0,
+      "SkinThickness": 0.0,
+      "Insulin": 0.0,
+      "BMI": 35.3,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 29,
+      "min_similarity": 0.975,
+      "case_id": "CASE_38d70960"
+    },
+    "index": 6
+  },
+  "CASE_7ef33b64": {
+    "case_id": "CASE_7ef33b64",
+    "timestamp": "2025-10-30T01:06:16.710251",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.9556593894958496,
+      "conclusion": "Your test results indicate a high risk of developing diabetes, and it's essential to take immediate action to manage your condition. Your blood glucose level is higher than normal, and your BMI is also above the healthy range. This increases your risk of developing complications such as heart disease, kidney damage, and vision problems.",
+      "next_steps": [
+        "Schedule an appointment with your doctor to discuss your test results and create a personalized plan to manage your diabetes.",
+        "Start making healthy lifestyle changes, such as eating a balanced diet, exercising regularly, and losing weight if you're overweight or obese.",
+        "Monitor your blood glucose levels regularly and adjust your diet and exercise plan as needed to maintain healthy levels."
+      ],
+      "evidence": [
+        {
+          "source": "WHO_Management",
+          "quote": "Unless the blood pressure is severely elevated, diagnosis should usually be based on high blood pressure (BP) measurements made under standard conditions on at least three occasions."
+        },
+        {
+          "source": "ICMR_Type2",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 9,
+      "Glucose": 198.0,
+      "BloodPressure": 60.0,
+      "SkinThickness": 41.0,
+      "Insulin": 543.0,
+      "BMI": 42.3,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 36,
+      "min_similarity": 0.975,
+      "case_id": "CASE_7ef33b64"
+    },
+    "index": 7
+  },
+  "CASE_6dced3a6": {
+    "case_id": "CASE_6dced3a6",
+    "timestamp": "2025-10-30T01:07:32.506780",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.00014451236347667873,
+      "conclusion": "You're at low risk for diabetes, congratulations! Your blood glucose level is within a healthy range, and your BMI is not too high. However, it's essential to maintain a healthy lifestyle to prevent any potential complications in the future.",
+      "next_steps": [
+        "Continue to maintain a healthy diet and regular exercise routine to prevent any potential complications.",
+        "Monitor your blood glucose levels regularly to ensure they remain within a healthy range.",
+        "Schedule a follow-up appointment with your doctor to discuss your progress and any necessary adjustments to your treatment plan."
+      ],
+      "evidence": [
+        {
+          "source": "WHO_Management",
+          "quote": "Unless the blood pressure is severely elevated, diagnosis should usually be based on high blood pressure (BP) measurements made under standard conditions on at least three occasions."
+        },
+        {
+          "source": "ICMR_Type2",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 1,
+      "Glucose": 95.0,
+      "BloodPressure": 70.0,
+      "SkinThickness": 27.0,
+      "Insulin": 100.0,
+      "BMI": 26.5,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 25,
+      "min_similarity": 0.975,
+      "case_id": "CASE_6dced3a6"
+    },
+    "index": 8
   }
 }

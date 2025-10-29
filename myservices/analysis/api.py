@@ -73,14 +73,62 @@ Retrieved Medical Guidelines:
     for i, chunk in enumerate(retrieved_chunks, 1):
         context += f"\nChunk {i}:\nDocument: {chunk['doc_id']}\nPage: {chunk.get('page_num', 'N/A')}\nContent: {chunk['text']}\n"
 
-    system_prompt = """You are a medical analysis assistant. Respond **only** in valid JSON with fields: conclusion, reasoning, next_steps, sources."""
+    system_prompt = """You are an AI health assistant that provides patient-friendly diabetes analysis in JSON format.
+    CRITICAL: Your entire response must be a single, valid JSON object. Do not include any text before or after the JSON.
+    Do not use markdown, formatting, or explanatory text. Output only the JSON structure below.
+
+    Required JSON structure:
+    {
+        "conclusion": "Clear, empathetic summary written directly to the patient (use 'you' language)",
+        "understanding": [
+            "Simple explanation of test results in patient-friendly terms",
+            "Clear breakdown of risk factors without medical jargon"
+        ],
+        "next_steps": [
+            "Specific, actionable steps the patient should take",
+            "Clear guidance on when to see a doctor"
+        ],
+        "lifestyle_changes": [
+            "Practical daily habits they can start today",
+            "Realistic health goals with clear metrics"
+        ],
+        "sources": [
+            {
+                "doc_id": "Source document ID",
+                "page": "page number as integer",
+                "quote": "Brief quote from medical guidelines",
+                "explanation": "How this applies to the patient in simple terms"
+            }
+        ]
+    }
+
+    Style requirements:
+    1. Use "you/your" language throughout
+    2. Avoid medical jargon - explain terms simply
+    3. Make recommendations specific and actionable
+    4. Be encouraging and supportive
+    5. Keep explanations brief and clear
+
+    IMPORTANT: Return ONLY the JSON object. Do not add any other text, markdown, or formatting."""
+
+    # Format context to encourage JSON response
+    formatted_context = f"""Analyze the following patient data and provide recommendations in JSON format only:
+
+Patient Data: {json.dumps(patient_data, indent=2)}
+Classifier Output: {json.dumps(classifier_output, indent=2)}
+Retrieved Guidelines: {json.dumps(retrieved_chunks, indent=2)}
+
+Remember: Respond with ONLY a JSON object. No other text or formatting."""
 
     completion = groq_client.chat.completions.create(
-        messages=[{"role": "system", "content": system_prompt},
-                  {"role": "user", "content": context}],
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": formatted_context}
+        ],
         model="llama-3.1-8b-instant",
-        temperature=0.3,
-        max_tokens=2048
+        temperature=0.2,  # Reduced temperature for more consistent formatting
+        max_tokens=2048,
+        response_format={"type": "json_object"}  # Request JSON response explicitly
     )
 
     chat_content = completion.choices[0].message.content.strip()
@@ -88,16 +136,53 @@ Retrieved Medical Guidelines:
         raise HTTPException(status_code=500, detail="Groq returned empty response")
 
     try:
+        # First try direct JSON parsing
         result = json.loads(chat_content)
-        if not isinstance(result, dict):
-            raise ValueError("Groq output is not a JSON object")
-        return result
-    except Exception as e:
-        print(">>> Raw Groq response:", repr(chat_content))
+    except json.JSONDecodeError:
+        try:
+            # Extract JSON from the response
+            if '```json' in chat_content:
+                # Extract from markdown code block
+                json_text = chat_content.split('```json')[1].split('```')[0].strip()
+            elif '`json' in chat_content:
+                # Extract from inline code block
+                json_text = chat_content.split('`json')[1].split('`')[0].strip()
+            else:
+                # Try to find JSON structure by brackets
+                start_idx = chat_content.find('{')
+                end_idx = chat_content.rfind('}') + 1
+                if start_idx >= 0 and end_idx > start_idx:
+                    json_text = chat_content[start_idx:end_idx]
+                else:
+                    raise ValueError("No JSON structure found in response")
+            
+            # Try parsing the extracted JSON
+            result = json.loads(json_text)
+            
+        except Exception as inner_e:
+            print(">>> Raw Groq response:", repr(chat_content))
+            raise HTTPException(
+                status_code=500,
+                detail=f"Failed to parse Groq response: {str(inner_e)}\nRaw response: {chat_content[:500]}..."
+            )
+    
+    # Validate the result structure
+    if not isinstance(result, dict):
         raise HTTPException(
             status_code=500,
-            detail=f"Groq returned invalid JSON: {chat_content}\n\nError: {str(e)}"
+            detail="Invalid response structure: expected JSON object"
         )
+        
+    # Ensure all required fields are present
+    required_fields = ['conclusion', 'understanding', 'next_steps', 'lifestyle_changes', 'sources']
+    missing_fields = [field for field in required_fields if field not in result]
+    if missing_fields:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Missing required fields in response: {', '.join(missing_fields)}"
+        )
+    
+    return result
 
 # --- Build search query ---
 def build_search_query(patient_data: dict, classifier_output: dict) -> str:

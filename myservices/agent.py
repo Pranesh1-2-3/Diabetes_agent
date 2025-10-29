@@ -16,14 +16,17 @@ PROMPTS_PATH = Path(__file__).parent.parent / "prompts" / "diabetes_analysis.jso
 class DiabetesAgent:
     """Agent class for diabetes analysis using Groq LLM."""
     
-    def __init__(self, model="llama-3.1-8b-instant"):
+    def __init__(self, model="llama-3.1-8b-instant", patient_centered=True):
         """Initialize the agent with Groq model."""
         self.model = model
         self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+        self.patient_centered = patient_centered
+        self.prompt_file = "patient_centered_analysis.json" if patient_centered else "diabetes_analysis.json"
 
     def build_prompt(self, patient_json, classifier_output, retrieved_chunks, memory):
         """Build the final prompt from template."""
-        with open(PROMPTS_PATH) as f:
+        prompt_path = Path(__file__).parent.parent / "prompts" / self.prompt_file
+        with open(prompt_path) as f:
             prompt_template = json.load(f)
 
         system_msg = prompt_template["system"]
