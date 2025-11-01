@@ -1,7 +1,7 @@
 import json
 import re
 from pathlib import Path
-from services.agent import analyze_case
+from myservices.agent import analyze_case
 
 # Example test case
 TEST_CASES = {

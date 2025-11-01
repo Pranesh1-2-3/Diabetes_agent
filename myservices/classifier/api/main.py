@@ -95,11 +95,24 @@ def predict_risk(patient_data: dict) -> dict:
 async def predict(data: PredictionInput):
     """Make prediction and return probability, label and SHAP explanations."""
     try:
-        # Convert input to DataFrame
-        input_df = pd.DataFrame([data.dict()])
+        # Convert input to dict
+        input_data = data.dict()
 
-        # Ensure columns are in correct order
+        #Automatically compute DiabetesPedigreeFunction if 0 or missing
+        if input_data.get("DiabetesPedigreeFunction", 0) == 0:
+            # 🔹 Simple heuristic estimation (placeholder — can be improved)
+            # Generally higher for older patients or those with higher BMI/Glucose
+            input_data["DiabetesPedigreeFunction"] = round(
+                0.3 + (input_data["BMI"] / 100) + (input_data["Glucose"] / 500) + (input_data["Age"] / 200),
+                3
+            )
+
+        # Convert to DataFrame
+        input_df = pd.DataFrame([input_data])
+
+        # Ensure correct column order
         input_df = input_df[feature_names]
+
 
         # Get prediction probability
         probability = model.predict_proba(input_df)[0, 1]
@@ -141,7 +154,9 @@ async def predict(data: PredictionInput):
                 top_features = [
                     {"name": feat, "importance": float(imp)}
                     for feat, imp in feature_importance[:3]
+                    if not (feat.lower() == "diabetespedigreefunction" and input_data.get("DiabetesPedigreeFunction", 0) == 0)
                 ]
+
         except Exception:
             # Fallback if SHAP fails
             top_features = [{"name": "N/A", "importance": 0.0}] * 3

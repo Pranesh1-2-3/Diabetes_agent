@@ -186,13 +186,35 @@ Remember: Respond with ONLY a JSON object. No other text or formatting."""
 
 # --- Build search query ---
 def build_search_query(patient_data: dict, classifier_output: dict) -> str:
-    risk_level = classifier_output["prediction"]
-    return " ".join([
+    """
+    Build a context-aware search query based on top SHAP features.
+    Falls back to default features if SHAP data not available.
+    """
+    risk_level = classifier_output.get("prediction", "unknown")
+    top_features = classifier_output.get("top_features", [])
+
+    # Use top SHAP features if available, else default
+    if top_features and all(isinstance(f, str) for f in top_features):
+        selected_features = top_features[:3]
+    else:
+        selected_features = ["BMI", "BloodPressure", "Glucose"]
+
+    # Build human-readable feature parts (e.g., "BMI 26.4", "Glucose 145")
+    feature_parts = []
+    for feat in selected_features:
+        val = patient_data.get(feat)
+        if val is not None:
+            feature_parts.append(f"{feat.replace('_', ' ').lower()} {val}")
+        else:
+            feature_parts.append(f"{feat.replace('_', ' ').lower()} N/A")
+
+    # Combine everything into a meaningful query
+    query = " ".join([
         f"guidelines for {risk_level} diabetes patient",
-        f"BMI {patient_data.get('BMI', 'N/A')}",
-        f"blood pressure {patient_data.get('BloodPressure', 'N/A')}",
-        f"glucose {patient_data.get('Glucose', 'N/A')}"
+        *feature_parts
     ])
+    return query
+
 
 # --- Main analysis pipeline ---
 @app.post("/analyze")
@@ -250,7 +272,7 @@ async def analyze_case(patient_data: PatientData):
         # --- Safe evidence extraction ---
         sources_list = groq_analysis.get("sources", [])
         evidence = []
-        for src in sources_list[:2]:
+        for src in sources_list:
             if isinstance(src, dict):
                 evidence.append({"source": src.get("doc_id", ""), "quote": str(src.get("quote", ""))})
             elif isinstance(src, str):
@@ -283,7 +305,18 @@ async def analyze_case(patient_data: PatientData):
 
         # --- Build final message ---
         recommended_actions = "\n".join([f"{i+1}. {step}" for i, step in enumerate(next_steps)])
-        sources = ', '.join([src['quote'] for src in evidence if src['quote']])
+        
+        import re
+
+        lines = []
+        for src in evidence:
+            if src['quote']:
+                cleaned_source = re.sub(r'\d+', '', src['source']).strip()
+                lines.append(f"{cleaned_source}: {src['quote']}")
+        sources = '\n'.join(lines)
+
+
+
         message = (
             f"Diabetes Risk Assessment: {synopsis['risk_level'].replace('_', ' ').title()}\n\n"
             f"Summary: {synopsis['conclusion']}\n\n"

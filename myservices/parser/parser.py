@@ -71,7 +71,6 @@ class MedicalTableParser:
             print(f"Error parsing {image_input}: {e}")
             return self._empty_result()
 
-
     # -------------------- Internal Helpers -------------------- #
 
     def _empty_result(self) -> Dict[str, Any]:
@@ -105,21 +104,28 @@ class MedicalTableParser:
 
             # ✅ Perform OCR
             text = pytesseract.image_to_string(image, config="--psm 6")
+            lower_text = text.lower()
 
             print(f"\n===== OCR OUTPUT =====\n{text}\n=======================\n")
 
-            # Split into lines
+            # 🩺 Try to extract biomarkers directly from OCR text (handles messy tables too)
+            extracted = self._extract_fields_from_text(lower_text)
+            if any(value is not None for value in extracted.values()):
+                print("✅ Extracted biomarkers directly from OCR text.")
+                return extracted
+
+            # 🧾 If that fails, fall back to table-like parsing
             lines = [line.strip() for line in text.splitlines() if line.strip()]
             if len(lines) < 2:
                 print("⚠️ Not enough lines detected by OCR.")
-                return self._empty_result()
+                return extracted or self._empty_result()
 
             data = [re.split(r"\s+", line) for line in lines]
             df = pd.DataFrame(data[1:], columns=data[0]) if len(data) > 1 else pd.DataFrame()
 
             if df.empty:
                 print("⚠️ DataFrame is empty after parsing OCR output.")
-                return self._empty_result()
+                return extracted or self._empty_result()
 
             print("\n===== PARSED DATAFRAME =====")
             print(df)
@@ -130,7 +136,6 @@ class MedicalTableParser:
         except Exception as e:
             print(f"Tesseract parsing error: {e}")
             return self._empty_result()
-
 
     def _parse_with_donut(self, image_path: str) -> Dict[str, Any]:
         """Parse a table using Donut model."""
@@ -169,18 +174,17 @@ class MedicalTableParser:
         return result
 
     def _extract_fields_from_text(self, text: str) -> Dict[str, Any]:
-        """Extract fields directly from raw text (Donut output)."""
+        """Extract fields directly from raw text."""
         result = self._empty_result()
-        lower_text = text.lower()
         for field, meta in self.field_definitions.items():
             for pattern in meta["patterns"]:
-                match = re.search(f"{pattern}[:\\s]+(\\d+\\.?\\d*)", lower_text)
+                match = re.search(rf"{pattern}[:\s=\-\+]*([\d\.]+)", text)
                 if match:
                     try:
                         value = float(match.group(1))
                         if meta["range"][0] <= value <= meta["range"][1]:
                             result[field] = value
-                    except:
+                    except ValueError:
                         pass
                     break
         return result
