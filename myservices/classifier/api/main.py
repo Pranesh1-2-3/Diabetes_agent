@@ -93,82 +93,70 @@ def predict_risk(patient_data: dict) -> dict:
 
 @app.post("/predict", response_model=PredictionOutput)
 async def predict(data: PredictionInput):
-    """Make prediction and return probability, label and SHAP explanations."""
+    """Make prediction and return probability, label, and SHAP explanations."""
     try:
-        # Convert input to dict
         input_data = data.dict()
 
-        #Automatically compute DiabetesPedigreeFunction if 0 or missing
+        # --- Input validation & clipping ---
+        # Prevent out-of-range or unseen values that can confuse the model
+        input_data["Glucose"] = np.clip(input_data["Glucose"], 0, 300)
+        input_data["BloodPressure"] = np.clip(input_data["BloodPressure"], 0, 200)
+        input_data["SkinThickness"] = np.clip(input_data["SkinThickness"], 0, 100)
+        input_data["Insulin"] = np.clip(input_data["Insulin"], 0, 900)
+        input_data["BMI"] = np.clip(input_data["BMI"], 0, 70)
+        input_data["Age"] = np.clip(input_data["Age"], 0, 120)
+        input_data["Pregnancies"] = np.clip(input_data["Pregnancies"], 0, 20)
+
+        # --- Smarter fallback for DiabetesPedigreeFunction ---
         if input_data.get("DiabetesPedigreeFunction", 0) == 0:
-            # 🔹 Simple heuristic estimation (placeholder — can be improved)
-            # Generally higher for older patients or those with higher BMI/Glucose
-            input_data["DiabetesPedigreeFunction"] = round(
-                0.3 + (input_data["BMI"] / 100) + (input_data["Glucose"] / 500) + (input_data["Age"] / 200),
-                3
+            dpf = (
+                0.4
+                + (input_data["Glucose"] / 400)
+                + (input_data["BMI"] / 150)
+                + (input_data["Age"] / 300)
             )
+            input_data["DiabetesPedigreeFunction"] = round(min(dpf, 2.0), 3)
 
-        # Convert to DataFrame
-        input_df = pd.DataFrame([input_data])
+        # --- Prepare DataFrame ---
+        input_df = pd.DataFrame([input_data])[feature_names]
 
-        # Ensure correct column order
-        input_df = input_df[feature_names]
+        # --- Model Prediction ---
+        probability = float(model.predict_proba(input_df)[0, 1])
 
+        # Adjusted threshold: 0.4 gives more clinically aligned results
+        threshold = 0.4
+        label = int(probability >= threshold)
 
-        # Get prediction probability
-        probability = model.predict_proba(input_df)[0, 1]
-
-        # Get predicted label
-        label = int(probability >= 0.5)
-
-        # Initialize top_features
-        top_features = []
-
-        # SHAP explanation
+        # --- SHAP Explanations ---
         try:
             if isinstance(model, xgb.XGBClassifier):
-                # For XGBoost, use TreeExplainer
                 explainer = shap.TreeExplainer(model)
                 shap_values = explainer.shap_values(input_df)
-
-                # Pair features with absolute SHAP importance
-                feature_importance = list(zip(feature_names, np.abs(shap_values[0])))
-                feature_importance.sort(key=lambda x: x[1], reverse=True)
-                top_features = [
-                    {"name": feat, "importance": float(imp)}
-                    for feat, imp in feature_importance[:3]
-                ]
-
             else:
-                # For other models, use KernelExplainer
-                explainer = shap.KernelExplainer(
-                    model.predict_proba,
-                    input_df.sample(min(50, len(input_df)))  # background dataset
-                )
+                explainer = shap.KernelExplainer(model.predict_proba, input_df.sample(1))
                 shap_values = explainer.shap_values(input_df)
 
-                if isinstance(shap_values, list):  # binary classification
-                    shap_values = shap_values[1]
+            if isinstance(shap_values, list):  # binary classification case
+                shap_values = shap_values[1]
 
-                feature_importance = list(zip(feature_names, np.abs(shap_values[0])))
-                feature_importance.sort(key=lambda x: x[1], reverse=True)
-                top_features = [
-                    {"name": feat, "importance": float(imp)}
-                    for feat, imp in feature_importance[:3]
-                    if not (feat.lower() == "diabetespedigreefunction" and input_data.get("DiabetesPedigreeFunction", 0) == 0)
-                ]
+            feature_importance = sorted(
+                [
+                    {"name": feat, "importance": float(abs(val))}
+                    for feat, val in zip(feature_names, shap_values[0])
+                ],
+                key=lambda x: x["importance"],
+                reverse=True,
+            )
+            top_features = feature_importance[:3]
 
         except Exception:
-            # Fallback if SHAP fails
             top_features = [{"name": "N/A", "importance": 0.0}] * 3
 
         return {
-            "probability": float(probability),
+            "probability": probability,
             "label": label,
-            "top_features_shap": top_features
+            "top_features_shap": top_features,
         }
 
     except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"Error making prediction: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Error making prediction: {str(e)}")
