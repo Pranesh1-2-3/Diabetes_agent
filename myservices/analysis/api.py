@@ -73,43 +73,50 @@ Retrieved Medical Guidelines:
     for i, chunk in enumerate(retrieved_chunks, 1):
         context += f"\nChunk {i}:\nDocument: {chunk['doc_id']}\nPage: {chunk.get('page_num', 'N/A')}\nContent: {chunk['text']}\n"
 
-    system_prompt = """You are an AI health assistant that provides patient-friendly diabetes analysis in JSON format.
-    CRITICAL: Your entire response must be a single, valid JSON object. Do not include any text before or after the JSON.
-    Do not use markdown, formatting, or explanatory text. Output only the JSON structure below.
+    system_prompt = """You are an AI health specialist trained to give expert, actionable advice about diabetes based on patient data and clinical guidelines.
+    You must act as the medical expert and directly advise the patient — do not refer them to a doctor, clinic, or medical professional. 
+    You are giving the steps yourself.
 
-    Required JSON structure:
+    Output must be a single valid JSON object following exactly this schema:
+
     {
-        "conclusion": "Clear, empathetic summary written directly to the patient (use 'you' language)",
+        "conclusion": "Empathetic summary addressing the patient directly (use 'you' language)",
+        "lifestyle_summary": "One short paragraph summarizing their current health and what consistent effort will do for them — must sound human and longitudinal",
         "understanding": [
-            "Simple explanation of test results in patient-friendly terms",
-            "Clear breakdown of risk factors without medical jargon"
+            "Clear explanation of what the test results mean in simple terms",
+            "Short, direct description of what this means for their health"
         ],
         "next_steps": [
-            "Specific, actionable steps the patient should take",
-            "Clear guidance on when to see a doctor"
+            "3 specific, concrete steps the patient should take (e.g., adjust diet, exercise, track levels)",
+            "Each step must be actionable and measurable",
+            "Do not include phrases like 'consult your doctor' or 'seek medical advice'"
         ],
         "lifestyle_changes": [
-            "Practical daily habits they can start today",
-            "Realistic health goals with clear metrics"
+            "Practical daily habits the patient can start right away",
+            "Realistic health goals (e.g., 'walk 30 minutes daily', 'keep BMI under 25')"
         ],
         "sources": [
             {
                 "doc_id": "Source document ID",
-                "page": "page number as integer",
-                "quote": "Brief quote from medical guidelines",
-                "explanation": "How this applies to the patient in simple terms"
+                "page": "Page number as integer if available",
+                "quote": "Relevant quote from medical guidelines",
+                "explanation": "Explain this quote in simple patient-friendly language"
             }
         ]
     }
 
-    Style requirements:
-    1. Use "you/your" language throughout
-    2. Avoid medical jargon - explain terms simply
-    3. Make recommendations specific and actionable
-    4. Be encouraging and supportive
-    5. Keep explanations brief and clear
+    Style rules:
+    1. Use 'you' or 'your' language throughout.
+    2. Write as if you are the medical expert giving the advice directly.
+    3. Keep all explanations short, clear, and confident.
+    4. Provide exactly 3 next_steps that the patient can follow immediately.
+    5. Never say 'consult your doctor', 'seek help', 'medical professional', or 'medication'.
+    6. Never recommend or name any specific drug or dosage.
+    7. Be encouraging, supportive, and confident.
 
-    IMPORTANT: Return ONLY the JSON object. Do not add any other text, markdown, or formatting."""
+    Respond with ONLY a JSON object — no markdown, no extra text."""
+
+
 
     # Format context to encourage JSON response
     formatted_context = f"""Analyze the following patient data and provide recommendations in JSON format only:
@@ -174,7 +181,7 @@ Remember: Respond with ONLY a JSON object. No other text or formatting."""
         )
         
     # Ensure all required fields are present
-    required_fields = ['conclusion', 'understanding', 'next_steps', 'lifestyle_changes', 'sources']
+    required_fields = ['conclusion','lifestyle_summary','understanding', 'next_steps', 'lifestyle_changes', 'sources']
     missing_fields = [field for field in required_fields if field not in result]
     if missing_fields:
         raise HTTPException(
@@ -320,8 +327,10 @@ async def analyze_case(patient_data: PatientData):
         message = (
             f"Diabetes Risk Assessment: {synopsis['risk_level'].replace('_', ' ').title()}\n\n"
             f"Summary: {synopsis['conclusion']}\n\n"
+            f"Lifestyle Summary: {groq_analysis.get('lifestyle_summary', 'No lifestyle summary provided.')}\n\n"
             f"Recommended Actions:\n{recommended_actions}"
         )
+
         if sources:
             message += f"\n\nSources: {sources}"
 

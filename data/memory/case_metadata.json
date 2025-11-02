@@ -174,7 +174,7 @@
   },
   "CASE_b2055139": {
     "case_id": "CASE_b2055139",
-    "timestamp": "2025-10-30T01:09:51.809550",
+    "timestamp": "2025-11-01T09:37:39.651835",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
@@ -183,20 +183,21 @@
     "outcome": "low_risk",
     "synopsis": {
       "risk_level": "low_risk",
-      "confidence": 0.0012665705289691687,
-      "conclusion": "Congratulations, you are at low risk for diabetes! Your test results show that you have a very low chance of developing diabetes. This is great news, and it's essential to continue taking care of your health to maintain this low risk.",
+      "confidence": 0.0019808646757155657,
+      "conclusion": "Congratulations, you are at low risk for diabetes! This is great news, and it's essential to maintain a healthy lifestyle to keep it that way.",
       "next_steps": [
-        "Continue to maintain a healthy lifestyle, including a balanced diet and regular exercise. This will help you stay at low risk for diabetes and overall good health.",
-        "Schedule a follow-up appointment with your doctor to review your test results and discuss any further recommendations or actions you should take."
+        "Continue to eat a balanced diet, including plenty of fruits, vegetables, and whole grains.",
+        "Stay hydrated by drinking plenty of water throughout the day.",
+        "Exercise regularly, aiming for at least 30 minutes of moderate-intensity exercise per day."
       ],
       "evidence": [
         {
-          "source": "WHO_Management",
-          "quote": "Unless the blood pressure is severely elevated, diagnosis should usually be based on high blood pressure (BP) measurements made under standard conditions on at least three occasions."
+          "source": "WHO2",
+          "quote": "The person with diabetes should acquire adequate knowledge and skills in the following: - individual nutritional requirements and meal planning - type and extent of exercise and physical activity - interaction of food intake and physical activity with oral hypoglycaemic drugs/insulin - improvements in lifestyle, for example harmful effects of smoking, obesity and alcohol intake"
         },
         {
-          "source": "ICMR_Type2",
-          "quote": "The diagnostic criteria for diabetes and prediabetes are summarized in Table 3.1."
+          "source": "ICMR",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
         }
       ]
     },
@@ -898,7 +899,7 @@
   },
   "CASE_2decb9bd": {
     "case_id": "CASE_2decb9bd",
-    "timestamp": "2025-11-01T06:47:13.017359",
+    "timestamp": "2025-11-02T19:43:34.264460",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
@@ -908,23 +909,24 @@
     "synopsis": {
       "risk_level": "low_risk",
       "confidence": 0.0016740972641855478,
-      "conclusion": "You're at low risk for diabetes, but it's essential to maintain a healthy lifestyle to prevent the condition from developing in the future. Your BMI is slightly above the normal range, and your blood pressure is a bit high, so we'll focus on making some adjustments to get you back on track.",
+      "conclusion": "You are at a low risk of developing diabetes, but it's essential to maintain a healthy lifestyle to prevent potential complications.",
       "next_steps": [
-        "Start by making small changes to your diet, such as eating more fruits and vegetables, whole grains, and lean protein sources. Aim to reduce your daily calorie intake by 500 calories to help you lose weight and lower your blood pressure.",
-        "Incorporate physical activity into your daily routine, such as taking a 30-minute walk after dinner or doing some light stretching exercises in the morning. Aim to do at least 150 minutes of moderate-intensity exercise or 75 minutes of vigorous-intensity exercise per week."
+        "Start a balanced diet that includes plenty of fruits, vegetables, whole grains, and lean protein sources. Aim to eat at least 5 servings of fruits and vegetables daily.",
+        "Engage in regular physical activity, such as brisk walking, cycling, or swimming, for at least 150 minutes per week.",
+        "Monitor your blood pressure regularly and make lifestyle changes to maintain a healthy level."
       ],
       "evidence": [
         {
           "source": "WHO2",
-          "quote": "Plasma glucose level in mg/dl (mmol/L) Fasting Postprandial 80-120(4.5-6.7) 90-145(5-8)"
+          "quote": "The person with diabetes should acquire adequate knowledge and skills in the following: - individual nutritional requirements and meal planning - type and extent of exercise and physical activity"
         },
         {
           "source": "ICMR",
-          "quote": "Daily physical activity and exercise"
+          "quote": "The diet should be individualized, close to the family pattern, flexible, should have variety and meal timing should be according to the patient's daily schedule."
         },
         {
           "source": "ICMR",
-          "quote": "Targets for metabolic control in diabetes"
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
         }
       ]
     },
@@ -944,7 +946,7 @@
   },
   "CASE_48537c12": {
     "case_id": "CASE_48537c12",
-    "timestamp": "2025-11-01T06:43:00.479937",
+    "timestamp": "2025-11-01T18:36:39.754980",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
@@ -954,11 +956,10 @@
     "synopsis": {
       "risk_level": "low_risk",
       "confidence": 0.00011866377462865785,
-      "conclusion": "Congratulations, you've been classified as low-risk for diabetes! This means you're doing a great job of managing your blood sugar levels. Keep up the good work!",
+      "conclusion": "Congratulations on taking the first step towards managing your health! Based on your test results, you're at low risk for diabetes. However, it's essential to maintain a healthy lifestyle to prevent any potential complications.",
       "next_steps": [
-        "Continue to monitor your glucose levels regularly to ensure they stay within the normal range.",
-        "Make sure to eat a balanced diet that includes plenty of fruits, vegetables, and whole grains. Aim to include a source of protein and healthy fats at each meal.",
-        "Stay hydrated by drinking plenty of water throughout the day. Aim for at least 8 cups (64 ounces) of water per day."
+        "Schedule a follow-up appointment with your doctor to discuss your test results and create a personalized plan for maintaining a healthy lifestyle.",
+        "Start by making small changes to your diet, such as eating more fruits and vegetables, and incorporating physical activity into your daily routine. Aim for at least 30 minutes of moderate-intensity exercise per day."
       ],
       "evidence": [
         {
@@ -967,11 +968,11 @@
         },
         {
           "source": "ICMR",
-          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+          "quote": "Targets for metabolic control in diabetes Blood glucose, blood pressure, BMI, waist circumference and lipid targets for a Fasting Plasma Glucose (mg/dl) 80 -110"
         },
         {
-          "source": "ICMR1",
-          "quote": "Balanced diet including all food groups"
+          "source": "ICMR",
+          "quote": "Daily physical activity and exercise Approximately, 25 kcals/kg ideal body weight/day can be given to a moderately active patient with diabetes."
         }
       ]
     },
@@ -1037,7 +1038,7 @@
   },
   "CASE_b2ccc306": {
     "case_id": "CASE_b2ccc306",
-    "timestamp": "2025-11-01T06:44:43.631976",
+    "timestamp": "2025-11-01T18:34:36.580400",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
@@ -1047,10 +1048,10 @@
     "synopsis": {
       "risk_level": "high_risk",
       "confidence": 0.9536064267158508,
-      "conclusion": "You have a high risk of developing diabetes, and it's essential to take immediate action to manage your condition. Your blood glucose levels are higher than normal, and your BMI is also above the healthy range. This increases your risk of developing complications such as heart disease, kidney damage, and nerve damage.",
+      "conclusion": "You have a high risk of developing diabetes based on your test results. It's essential to make lifestyle changes to manage your condition and prevent complications.",
       "next_steps": [
-        "Work with your healthcare provider to develop a personalized plan to manage your blood glucose levels and reduce your risk of complications.",
-        "Make lifestyle changes such as eating a healthy diet, exercising regularly, and losing weight if you are overweight or obese."
+        "Schedule an appointment with your doctor to discuss your test results and create a personalized plan to manage your condition.",
+        "Start by making healthy lifestyle changes, such as eating a balanced diet, exercising regularly, and maintaining a healthy weight."
       ],
       "evidence": [
         {
@@ -1063,11 +1064,11 @@
         },
         {
           "source": "WHO2",
-          "quote": "Diet is a basic part of management in every case."
+          "quote": "Diet is a basic part of management in every case. Treatment cannot be effective unless adequate attention is given to ensuring appropriate nutrition."
         },
         {
           "source": "ICMR1",
-          "quote": "Insulin administration (0.25 to 1.0U/kg depending on age and pubertal status)"
+          "quote": "Calories should be appropriate to the expected body weight, pubertal status, activity"
         }
       ]
     },
@@ -1087,7 +1088,7 @@
   },
   "CASE_d947d9f3": {
     "case_id": "CASE_d947d9f3",
-    "timestamp": "2025-11-01T06:45:32.441088",
+    "timestamp": "2025-11-01T18:33:13.010747",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
@@ -1097,15 +1098,15 @@
     "synopsis": {
       "risk_level": "low_risk",
       "confidence": 0.0015093596884980798,
-      "conclusion": "Congratulations, your test results show that you are at low risk for developing diabetes. You have a healthy glucose level and a normal BMI, which are great indicators of your overall health. Keep up the good work!",
+      "conclusion": "Congratulations, your diabetes risk is low! You're doing a great job taking care of your health. Keep up the good work!",
       "next_steps": [
-        "Continue to monitor your glucose level and BMI to ensure that they remain within the normal range.",
-        "Make sure to eat a balanced diet and engage in regular physical activity to maintain your overall health."
+        "Continue to monitor your blood glucose levels regularly to ensure they stay within a healthy range.",
+        "Make sure to schedule regular check-ups with your doctor to stay on top of your health."
       ],
       "evidence": [
         {
           "source": "ICMR",
-          "quote": "Any target is only a general guideline, and individualized targets are to be established."
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
         },
         {
           "source": "WHO2",
@@ -1113,7 +1114,7 @@
         },
         {
           "source": "ICMR",
-          "quote": "The diet should be individualized, close to the family pattern, flexible, should have variety and meal timing should be according to the patient\u2019s daily schedule."
+          "quote": "Daily physical activity and exercise"
         }
       ]
     },
@@ -1133,7 +1134,7 @@
   },
   "CASE_78f2d25e": {
     "case_id": "CASE_78f2d25e",
-    "timestamp": "2025-11-01T06:46:17.879159",
+    "timestamp": "2025-11-01T18:35:46.531689",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
@@ -1143,10 +1144,10 @@
     "synopsis": {
       "risk_level": "high_risk",
       "confidence": 0.9884445667266846,
-      "conclusion": "Based on your test results, you are at high risk of developing diabetes. It's essential to take control of your blood sugar levels to prevent complications. We recommend you start making lifestyle changes and consider consulting a doctor for further guidance.",
+      "conclusion": "Based on your test results, you are at high risk of developing diabetes. It's essential to take immediate action to manage your condition and prevent complications.",
       "next_steps": [
-        "Start by making healthy lifestyle changes, such as eating a balanced diet, exercising regularly, and losing weight if you're overweight or obese.",
-        "Consider consulting a doctor to discuss your test results and develop a personalized plan to manage your blood sugar levels."
+        "Schedule an appointment with your doctor to discuss your test results and create a plan to manage your condition.",
+        "Start making healthy lifestyle changes, such as eating a balanced diet, exercising regularly, and losing weight if you're overweight or obese."
       ],
       "evidence": [
         {
@@ -1176,5 +1177,231 @@
       "case_id": "CASE_78f2d25e"
     },
     "index": 4
+  },
+  "CASE_aa4f32ea": {
+    "case_id": "CASE_aa4f32ea",
+    "timestamp": "2025-11-02T02:05:13.162895",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.2795538008213043,
+      "conclusion": "You're at low risk for diabetes, but it's essential to maintain a healthy lifestyle to prevent the condition from developing. Your BMI is slightly high, and your glucose levels are a bit elevated, so we'll focus on making some adjustments to get you back on track.",
+      "next_steps": [
+        "Start by making healthy food choices, including plenty of fruits, vegetables, whole grains, and lean protein sources. Aim to limit your daily sugar intake and saturated fat.",
+        "Incorporate regular physical activity into your daily routine, such as brisk walking, cycling, or swimming. Aim for at least 150 minutes of moderate-intensity exercise or 75 minutes of vigorous-intensity exercise per week."
+      ],
+      "evidence": [
+        {
+          "source": "WHO2",
+          "quote": "Symptoms Absent Absent Present Plasma glucose level in mg/dl (mmol/L) Fasting Postprandial 80-120(4.5-6.7) 90-145(5-8) <160(9) <180(10) >160(9) >180(10)"
+        },
+        {
+          "source": "ICMR1",
+          "quote": "NUTRITION \u2219 Calories should be appropriate to the expected body weight, pubertal status, activity \u2219 Balanced diet including all food groups \u2219 Simple sugars and excessive fats to be avoided"
+        },
+        {
+          "source": "ICMR",
+          "quote": "Targets for metabolic control in diabetes Blood glucose, blood pressure, BMI, waist circumference and lipid targets for a Fasting Plasma Glucose (mg/dl) 80 -110 111 - 125 > 125"
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 145.0,
+      "BloodPressure": 0.0,
+      "SkinThickness": 0.0,
+      "Insulin": 0.0,
+      "BMI": 27.0,
+      "DiabetesPedigreeFunction": 0.42,
+      "Age": 30,
+      "min_similarity": 0.975,
+      "case_id": "CASE_aa4f32ea"
+    },
+    "index": 0
+  },
+  "CASE_04317cee": {
+    "case_id": "CASE_04317cee",
+    "timestamp": "2025-11-02T19:45:44.957390",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.0006937349680811167,
+      "conclusion": "You're at low risk for diabetes, but it's essential to maintain a healthy lifestyle to prevent any potential complications.",
+      "next_steps": [
+        "Start tracking your daily food intake and physical activity to ensure you're meeting your nutritional needs and staying active.",
+        "Aim to eat at least 5 servings of fruits and vegetables daily, and choose whole grains over refined carbohydrates.",
+        "Incorporate at least 30 minutes of moderate-intensity physical activity into your daily routine, such as brisk walking or cycling."
+      ],
+      "evidence": [
+        {
+          "source": "WHO2",
+          "quote": "The person with diabetes should acquire adequate knowledge and skills in the following:"
+        },
+        {
+          "source": "ICMR",
+          "quote": "The diet should be individualized, close to the family pattern, flexible, should have variety and meal timing should be according to the patient\u2019s daily schedule."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 1,
+      "Glucose": 85.0,
+      "BloodPressure": 70.0,
+      "SkinThickness": 25.0,
+      "Insulin": 80.0,
+      "BMI": 24.5,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 0,
+      "min_similarity": 0.975,
+      "case_id": "CASE_04317cee"
+    },
+    "index": 1
+  },
+  "CASE_217af3d0": {
+    "case_id": "CASE_217af3d0",
+    "timestamp": "2025-11-02T19:44:26.231084",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.885384738445282,
+      "conclusion": "You have a high risk of developing diabetes, and it's essential to take immediate action to prevent complications. By making some simple lifestyle changes, you can significantly reduce your risk and improve your overall health.",
+      "next_steps": [
+        "Start by making healthy food choices, focusing on whole grains, fruits, vegetables, lean proteins, and healthy fats. Aim to include a variety of colors on your plate to ensure you're getting a range of nutrients.",
+        "Increase your physical activity levels by aiming for at least 150 minutes of moderate-intensity exercise or 75 minutes of vigorous-intensity exercise per week. You can start by taking a 30-minute walk each day and gradually increase the duration and intensity.",
+        "Monitor your blood glucose levels regularly to track your progress and make adjustments to your diet and exercise plan as needed."
+      ],
+      "evidence": [
+        {
+          "source": "WHO2",
+          "quote": "The person with diabetes should acquire adequate knowledge and skills in the following: - individual nutritional requirements and meal planning - type and extent of exercise and physical activity - interaction of food intake and physical activity with oral hypoglycaemic drugs/insulin"
+        },
+        {
+          "source": "ICMR1",
+          "quote": "Calories should be appropriate to the expected body weight, pubertal status, activity"
+        },
+        {
+          "source": "ICMR",
+          "quote": "Daily physical activity and exercise"
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 250.0,
+      "BloodPressure": 0.0,
+      "SkinThickness": 0.0,
+      "Insulin": 0.0,
+      "BMI": 15.0,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 21,
+      "min_similarity": 0.975,
+      "case_id": "CASE_217af3d0"
+    },
+    "index": 2
+  },
+  "CASE_8a85430f": {
+    "case_id": "CASE_8a85430f",
+    "timestamp": "2025-11-02T19:46:49.820296",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.0008752866997383535,
+      "conclusion": "Congratulations on taking the first step towards managing your health! Based on your data, you are at a low risk of developing diabetes, but it's essential to maintain a healthy lifestyle to prevent any potential complications.",
+      "next_steps": [
+        "Start tracking your daily food intake and physical activity using a mobile app or a journal to monitor your progress.",
+        "Aim to eat a balanced diet that includes plenty of fruits, vegetables, whole grains, and lean protein sources.",
+        "Engage in at least 30 minutes of moderate-intensity physical activity, such as brisk walking, cycling, or swimming, most days of the week."
+      ],
+      "evidence": [
+        {
+          "source": "WHO2",
+          "quote": "Symptoms Absent Absent Present Plasma glucose level in mg/dl (mmol/L) Fasting Postprandial <160(9) <180(10) >160(9) >180(10)"
+        },
+        {
+          "source": "ICMR",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 0.0,
+      "BloodPressure": 125.0,
+      "SkinThickness": 0.0,
+      "Insulin": 0.0,
+      "BMI": 18.0,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 14,
+      "min_similarity": 0.975,
+      "case_id": "CASE_8a85430f"
+    },
+    "index": 2
+  },
+  "CASE_6f59725e": {
+    "case_id": "CASE_6f59725e",
+    "timestamp": "2025-11-02T19:47:47.085573",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.0039480761624872684,
+      "conclusion": "You're at a low risk of developing diabetes, but it's essential to maintain a healthy lifestyle to prevent any potential complications.",
+      "next_steps": [
+        "Start tracking your daily food intake and physical activity using a mobile app or a journal to monitor your progress.",
+        "Aim to reduce your daily calorie intake by 250-500 calories to achieve a healthy weight and improve your insulin sensitivity.",
+        "Schedule regular physical activity, such as brisk walking or cycling, for at least 30 minutes a day to improve your cardiovascular health and insulin sensitivity."
+      ],
+      "evidence": [
+        {
+          "source": "WHO2",
+          "quote": "The person with diabetes should acquire adequate knowledge and skills in the following:"
+        },
+        {
+          "source": "ICMR",
+          "quote": "The diet should be individualized, close to the family pattern, flexible, should have variety and meal timing should be according to the patient's daily schedule."
+        },
+        {
+          "source": "ICMR",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 0.0,
+      "BloodPressure": 0.0,
+      "SkinThickness": 0.0,
+      "Insulin": 0.0,
+      "BMI": 25.0,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 50,
+      "min_similarity": 0.975,
+      "case_id": "CASE_6f59725e"
+    },
+    "index": 3
   }
 }
