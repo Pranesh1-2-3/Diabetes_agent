@@ -7,10 +7,9 @@ from dotenv import load_dotenv
 import os
 from fastapi import HTTPException
 
-load_dotenv()  # load variables from .env
+load_dotenv()  
 api_key = os.getenv("GROQ_API_KEY")
 
-# Path to your prompt template
 PROMPTS_PATH = Path(__file__).parent.parent / "prompts" / "diabetes_analysis.json"
 
 class DiabetesAgent:

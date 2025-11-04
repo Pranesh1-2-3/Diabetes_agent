@@ -174,30 +174,34 @@
   },
   "CASE_b2055139": {
     "case_id": "CASE_b2055139",
-    "timestamp": "2025-11-01T09:37:39.651835",
+    "timestamp": "2025-11-05T03:31:57.563858",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
       "llm": "mixtral-8x7b-32768"
     },
-    "outcome": "low_risk",
+    "outcome": "high_risk",
     "synopsis": {
-      "risk_level": "low_risk",
-      "confidence": 0.0019808646757155657,
-      "conclusion": "Congratulations, you are at low risk for diabetes! This is great news, and it's essential to maintain a healthy lifestyle to keep it that way.",
+      "risk_level": "high_risk",
+      "confidence": 0.99,
+      "conclusion": "You are at high risk of developing diabetes, and it's essential to take immediate action to prevent this condition. Based on the data, a Type 1 diabetes pattern has been detected, which requires careful management to prevent complications.",
       "next_steps": [
-        "Continue to eat a balanced diet, including plenty of fruits, vegetables, and whole grains.",
-        "Stay hydrated by drinking plenty of water throughout the day.",
-        "Exercise regularly, aiming for at least 30 minutes of moderate-intensity exercise per day."
+        "Monitor your blood glucose levels regularly to track any changes and adjust your diet and exercise accordingly.",
+        "Follow a balanced diet that is low in sugar and refined carbohydrates, and high in fiber and protein.",
+        "Engage in regular physical activity, such as walking or jogging, for at least 30 minutes a day to improve your insulin sensitivity."
       ],
       "evidence": [
         {
-          "source": "WHO2",
-          "quote": "The person with diabetes should acquire adequate knowledge and skills in the following: - individual nutritional requirements and meal planning - type and extent of exercise and physical activity - interaction of food intake and physical activity with oral hypoglycaemic drugs/insulin - improvements in lifestyle, for example harmful effects of smoking, obesity and alcohol intake"
+          "source": "WHO1",
+          "quote": "Participants at the First WHO Regional Meeting on Diabetes Mellitus (December 1992) and the Regional Consultation on Diabetes Management and Control (July 1994):"
         },
         {
-          "source": "ICMR",
-          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+          "source": "WHO1",
+          "quote": "Proportion of people with diabetes who have been diagnosed with diabetes based on WHO or national guidelines."
+        },
+        {
+          "source": "WHO1",
+          "quote": "Improving health outcomes of people with diabetes mellitus: target setting to reduce the global burden of diabetes mellitus by 2030."
         }
       ]
     },
@@ -803,7 +807,7 @@
   },
   "CASE_0cc1264d": {
     "case_id": "CASE_0cc1264d",
-    "timestamp": "2025-11-03T03:30:09.698453",
+    "timestamp": "2025-11-05T05:04:50.906939",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
@@ -812,21 +816,21 @@
     "outcome": "high_risk",
     "synopsis": {
       "risk_level": "high_risk",
-      "confidence": 0.9797550439834595,
-      "conclusion": "You are at high risk of developing diabetes, and it's essential to take immediate action to manage your condition and prevent complications.",
+      "confidence": 0.9701640605926514,
+      "conclusion": "You are at high risk of developing diabetes, and it's essential to take immediate action to prevent this condition. Based on your data, your glucose levels are slightly elevated, and you have a high BMI, which are both risk factors for diabetes.",
       "next_steps": [
-        "Start a balanced diet that includes plenty of fruits, vegetables, whole grains, and lean protein sources. Aim to eat at least 5 servings of fruits and vegetables per day, and limit your intake of sugary drinks and foods high in saturated and trans fats.",
-        "Engage in regular physical activity, such as brisk walking, cycling, or swimming, for at least 150 minutes per week. You can also incorporate strength training exercises into your routine to help build muscle and improve insulin sensitivity.",
-        "Monitor your blood glucose levels regularly, and work with your healthcare team to develop a plan to manage your condition and prevent complications."
+        "Start tracking your glucose levels regularly to monitor your progress and identify any patterns or fluctuations.",
+        "Begin a balanced diet that includes plenty of fruits, vegetables, whole grains, and lean protein sources to help regulate your blood sugar levels.",
+        "Engage in regular physical activity, such as brisk walking, cycling, or swimming, for at least 150 minutes per week to improve your insulin sensitivity and overall health."
       ],
       "evidence": [
         {
-          "source": "WHO2",
-          "quote": "The person with diabetes should acquire adequate knowledge and skills in the following: - individual nutritional requirements and meal planning - type and extent of exercise and physical activity - interaction of food intake and physical activity with oral hypoglycaemic drugs/insulin"
+          "source": "WHO - Self-monitoring guidance",
+          "quote": "Self-monitoring and significance of results and actions to be taken"
         },
         {
-          "source": "ICMR",
-          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+          "source": "ICMR - Management of Type 2 Diabetes",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications"
         }
       ]
     },
@@ -892,7 +896,7 @@
   },
   "CASE_2decb9bd": {
     "case_id": "CASE_2decb9bd",
-    "timestamp": "2025-11-03T03:51:42.869812",
+    "timestamp": "2025-11-05T04:12:29.805942",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
@@ -901,25 +905,25 @@
     "outcome": "low_risk",
     "synopsis": {
       "risk_level": "low_risk",
-      "confidence": 0.0016740972641855478,
-      "conclusion": "You are at a low risk of developing diabetes, but it's essential to maintain a healthy lifestyle to prevent the onset of this condition.",
+      "confidence": 0.0005810487200506032,
+      "conclusion": "You are at low risk for diabetes, but it's essential to maintain a healthy lifestyle to prevent any potential issues. You're 25 years old, and your BMI is 25.95, which is slightly above the normal range. Focus on making sustainable changes to your diet and physical activity to support your overall well-being.",
       "next_steps": [
-        "Start tracking your daily food intake and physical activity using a mobile app or a journal to monitor your progress.",
-        "Aim to reduce your daily calorie intake by 500 calories and focus on consuming complex carbohydrates, such as whole grains, legumes, and fruits, which are rich in fiber and have a low glycemic index.",
-        "Engage in at least 150 minutes of moderate-intensity aerobic physical activity or 75 minutes of vigorous-intensity aerobic physical activity, or an equivalent combination of both, per week, and incorporate strength-training exercises into your routine at least twice a week."
+        "Start by tracking your daily food intake and physical activity using a mobile app or journal. This will help you become more aware of your habits and make informed decisions.",
+        "Incorporate more fruits, vegetables, and whole grains into your diet. Aim to eat at least 5 servings of fruits and vegetables daily.",
+        "Engage in at least 150 minutes of moderate-intensity aerobic physical activity or 75 minutes of vigorous-intensity aerobic physical activity per week."
       ],
       "evidence": [
         {
-          "source": "WHO2",
-          "quote": "The person with diabetes should acquire adequate knowledge and skills in the following: - individual nutritional requirements and meal planning - type and extent of exercise and physical activity - interaction of food intake and physical activity with oral hypoglycaemic drugs/insulin"
+          "source": "WHO - Self-monitoring guidance",
+          "quote": "Self-monitoring and significance of results and actions to be taken"
         },
         {
-          "source": "ICMR",
-          "quote": "The diet should be individualized, close to the family pattern, flexible, should have variety and meal timing should be according to the patient\u2019s daily schedule."
+          "source": "ICMR - Management of Type 2 Diabetes",
+          "quote": "Diet should be individualized, close to the family pattern, flexible, should have variety and meal timing should be according to the patient's daily schedule"
         },
         {
-          "source": "ICMR",
-          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+          "source": "WHO - Guidance on global monitoring for diabetes prevention and control",
+          "quote": "Proportion of people aged 18 years and over with raised blood glucose or on medication for diabetes"
         }
       ]
     },
@@ -1399,7 +1403,7 @@
   },
   "CASE_f79f0cee": {
     "case_id": "CASE_f79f0cee",
-    "timestamp": "2025-11-03T03:29:24.598056",
+    "timestamp": "2025-11-05T05:06:03.704039",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
@@ -1409,20 +1413,16 @@
     "synopsis": {
       "risk_level": "low_risk",
       "confidence": 0.0037139125633984804,
-      "conclusion": "You're at a low risk of developing diabetes, congratulations! However, it's essential to maintain a healthy lifestyle to prevent complications.",
+      "conclusion": "You are at a low risk for diabetes, but it's essential to maintain a healthy lifestyle to prevent any potential complications. You may want to consider making some adjustments to your diet and exercise routine to ensure you're on the right track.",
       "next_steps": [
-        "Start tracking your daily food intake and physical activity using a mobile app or a journal to monitor your progress.",
-        "Aim to walk for at least 30 minutes daily and increase your physical activity to at least 150 minutes per week.",
-        "Consult the ICMR guidelines for a personalized diet plan and aim to consume 6 small meals a day with a balanced mix of carbohydrates, proteins, and fats."
+        "Start tracking your blood glucose levels regularly to monitor your health and make any necessary adjustments to your diet and exercise routine.",
+        "Focus on eating a balanced diet that includes plenty of fruits, vegetables, whole grains, and lean protein sources. Aim to limit your intake of sugary drinks and foods high in saturated fats.",
+        "Engage in regular physical activity, such as walking, jogging, or cycling, for at least 30 minutes a day to help maintain a healthy weight and reduce your risk of developing diabetes-related complications."
       ],
       "evidence": [
         {
-          "source": "ICMR",
-          "quote": "The diet should be individualized, close to the family pattern, flexible, should have variety and meal timing should be according to the patient\u2019s daily schedule."
-        },
-        {
-          "source": "WHO1",
-          "quote": "FPG \u2265 126 mg/dl (7 mmol/L); or HbA1c \u2265 6.5% (48 mmol/mol)."
+          "source": "WHO - Self-monitoring guidance",
+          "quote": "Self-monitoring of blood glucose is essential for people with diabetes to manage their condition effectively."
         }
       ]
     },
@@ -1442,7 +1442,7 @@
   },
   "CASE_9a2b1d2c": {
     "case_id": "CASE_9a2b1d2c",
-    "timestamp": "2025-11-03T03:31:14.955427",
+    "timestamp": "2025-11-05T05:05:39.268935",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
@@ -1451,25 +1451,21 @@
     "outcome": "high_risk",
     "synopsis": {
       "risk_level": "high_risk",
-      "confidence": 0.9897610545158386,
-      "conclusion": "You are at high risk of developing diabetes, and it's essential to take immediate action to prevent complications. Consistent effort will help you achieve good glycaemic control and reduce the risk of maternal and perinatal complications.",
+      "confidence": 0.9876540303230286,
+      "conclusion": "You are at high risk of developing gestational diabetes mellitus (GDM) due to your high glucose levels and pregnancy history. It's essential to take proactive steps to manage your blood sugar levels and prevent complications.",
       "next_steps": [
-        "Start monitoring your blood glucose levels regularly to track your progress and make necessary adjustments to your diet and exercise routine.",
-        "Adopt a healthy diet that includes plenty of fruits, vegetables, whole grains, and lean protein sources. Aim to limit your intake of sugary drinks and processed foods.",
-        "Engage in regular physical activity, such as walking or jogging, for at least 30 minutes a day to help manage your blood glucose levels and maintain a healthy weight."
+        "Get screened for GDM between 24 and 28 weeks of gestation using an oral glucose tolerance test (OGTT) with a 75 g glucose load.",
+        "If diagnosed with GDM, work with your healthcare provider to develop a management plan that includes medical nutritional therapy, exercise, and possibly insulin or metformin.",
+        "Maintain a healthy diet and engage in regular physical activity to help manage your blood sugar levels and prevent complications."
       ],
       "evidence": [
         {
-          "source": "WHO2",
-          "quote": "Good glycaemic control has special importance during pregnancy."
+          "source": "WHO Guidelines for Screening and Diagnosis of Gestational Diabetes Mellitus",
+          "quote": "Screening for GDM is recommended at two stages during pregnancy: all pregnant women should be screened for diabetes during the first antenatal visit by testing for glycosuria."
         },
         {
-          "source": "ICMR1",
-          "quote": "All pregnant women to be screened in 1st trimester with FPG."
-        },
-        {
-          "source": "WHO",
-          "quote": "Gestational diabetes is hyperglycaemia with blood glucose values above normal but below those diagnostic of diabetes."
+          "source": "ICMR Guidelines for Management of Type 2 Diabetes",
+          "quote": "Screening for GDM is done usually between 24 and 28 weeks of gestation."
         }
       ]
     },
@@ -2178,7 +2174,7 @@
   },
   "CASE_14c90a43": {
     "case_id": "CASE_14c90a43",
-    "timestamp": "2025-11-03T04:00:48.739570",
+    "timestamp": "2025-11-03T15:45:14.965318",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
@@ -2188,11 +2184,11 @@
     "synopsis": {
       "risk_level": "high_risk",
       "confidence": 0.6863828897476196,
-      "conclusion": "You have a high risk of developing diabetes, and it's essential to take immediate action to manage your condition.",
+      "conclusion": "You are at high risk of developing diabetes, and it's essential to take immediate action to prevent or manage this condition. Based on your data, your blood glucose level is higher than normal, and your BMI is significantly above the healthy range. This suggests that you may be developing insulin resistance, a precursor to type 2 diabetes.",
       "next_steps": [
-        "Start tracking your blood sugar levels regularly to monitor your progress and make adjustments to your diet and exercise routine as needed.",
-        "Begin a balanced diet that includes plenty of fruits, vegetables, whole grains, and lean protein sources to help regulate your blood sugar levels and improve your overall health.",
-        "Engage in regular physical activity, such as walking or other exercises, for at least 30 minutes a day to improve your insulin sensitivity and reduce your risk of developing diabetes."
+        "Start by following a healthy, balanced diet that is low in sugar, salt, and unhealthy fats. Aim to eat at least five servings of fruits and vegetables daily, and choose whole grains over refined carbohydrates.",
+        "Engage in regular physical activity, such as brisk walking, cycling, or swimming, for at least 150 minutes per week. You can also incorporate strength training exercises into your routine to improve your insulin sensitivity.",
+        "Monitor your blood glucose levels regularly, using a glucometer or by consulting with a healthcare professional. This will help you track your progress and make adjustments to your diet and exercise routine as needed."
       ],
       "evidence": [
         {
@@ -2225,7 +2221,7 @@
   },
   "CASE_ded956b3": {
     "case_id": "CASE_ded956b3",
-    "timestamp": "2025-11-03T04:01:13.783297",
+    "timestamp": "2025-11-03T15:44:45.322192",
     "model_versions": {
       "classifier": "xgboost-v1.0",
       "embedding": "all-MiniLM-L6-v2",
@@ -2235,16 +2231,16 @@
     "synopsis": {
       "risk_level": "low_risk",
       "confidence": 0.002353896852582693,
-      "conclusion": "Congratulations on taking the first step towards managing your health! Based on your test results, you are at low risk for diabetes, but it's essential to maintain a healthy lifestyle to prevent any potential complications.",
+      "conclusion": "You are at a low risk for diabetes, congratulations! Your current health and consistent effort will help you maintain a healthy lifestyle and prevent potential complications. Keep up the good work!",
       "next_steps": [
-        "Start tracking your daily food intake and physical activity using a mobile app or a journal to monitor your progress and make informed decisions about your diet and exercise.",
-        "Aim to include a balanced diet with complex carbohydrates, lean proteins, and healthy fats in your meals to maintain stable blood glucose levels.",
-        "Schedule regular physical activity, such as walking or jogging, for at least 30 minutes a day to help regulate blood sugar levels and improve overall health."
+        "Start tracking your daily food intake and physical activity to ensure you're meeting your nutritional needs and staying active.",
+        "Aim to eat a balanced diet with plenty of fruits, vegetables, whole grains, and lean protein sources.",
+        "Incorporate at least 30 minutes of moderate-intensity physical activity into your daily routine, such as brisk walking or cycling."
       ],
       "evidence": [
         {
           "source": "WHO2",
-          "quote": "- self-monitoring and significance of results and actions to be taken - how to cope with emergencies (illness, hypoglycaemia) - how to avoid complications and detect them at an early stage, e.g. how to take care of the feet."
+          "quote": "Diet is a basic part of management in every case."
         },
         {
           "source": "ICMR",
@@ -2252,7 +2248,7 @@
         },
         {
           "source": "ICMR",
-          "quote": "Daily physical activity and exercise Ideal Body Weight (IBW) = (Height in cm - 100) * 0.9."
+          "quote": "Carbohydrates should be complex in nature."
         }
       ]
     },
@@ -2316,5 +2312,600 @@
       "case_id": "CASE_846a70f5"
     },
     "index": 4
+  },
+  "CASE_05e707f1": {
+    "case_id": "CASE_05e707f1",
+    "timestamp": "2025-11-03T15:49:30.232259",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.3170202374458313,
+      "conclusion": "You are at low risk for diabetes, but it's essential to maintain a healthy lifestyle to prevent potential complications. You have a good starting point with your BMI, but it's crucial to continue monitoring your glucose levels and blood pressure.",
+      "next_steps": [
+        "Start tracking your daily glucose levels and blood pressure to monitor any changes.",
+        "Incorporate physical activity into your daily routine, such as walking for at least 30 minutes a day.",
+        "Follow a balanced diet that includes complex carbohydrates, fiber-rich foods, and lean protein sources."
+      ],
+      "evidence": [
+        {
+          "source": "WHO2",
+          "quote": "Diet is a basic part of management in every case."
+        },
+        {
+          "source": "ICMR",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        },
+        {
+          "source": "ICMR",
+          "quote": "Carbohydrates should be complex in nature."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 250.0,
+      "BloodPressure": 100.0,
+      "SkinThickness": 0.0,
+      "Insulin": 10.0,
+      "BMI": 18.0,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 19,
+      "min_similarity": 0.975,
+      "case_id": "CASE_05e707f1"
+    },
+    "index": 3
+  },
+  "CASE_d44f0abf": {
+    "case_id": "CASE_d44f0abf",
+    "timestamp": "2025-11-03T15:50:28.332750",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.35840603709220886,
+      "conclusion": "You are at low risk for diabetes, but it's essential to take proactive steps to maintain a healthy lifestyle. This will help prevent any potential complications and ensure you stay healthy.",
+      "next_steps": [
+        "Start tracking your daily food intake and physical activity to understand your habits and make informed decisions.",
+        "Begin a gradual weight loss program by reducing your daily calorie intake by 500 calories and increasing your physical activity.",
+        "Schedule regular health check-ups to monitor your blood glucose levels and overall health."
+      ],
+      "evidence": [
+        {
+          "source": "WHO2",
+          "quote": "- self-monitoring and significance of results and actions to be taken - how to cope with emergencies (illness, hypoglycaemia) - how to avoid complications and detect them at an early stage, e.g. how to take care of the feet."
+        },
+        {
+          "source": "ICMR",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        },
+        {
+          "source": "ICMR",
+          "quote": "Daily physical activity and exercise"
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 350.0,
+      "BloodPressure": 95.0,
+      "SkinThickness": 10.0,
+      "Insulin": 5.0,
+      "BMI": 16.0,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 18,
+      "min_similarity": 0.975,
+      "case_id": "CASE_d44f0abf"
+    },
+    "index": 4
+  },
+  "CASE_5bb93642": {
+    "case_id": "CASE_5bb93642",
+    "timestamp": "2025-11-03T15:51:13.567792",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.5212017297744751,
+      "conclusion": "You are at high risk of developing diabetes, and it's essential to take immediate action to prevent this condition. Based on your data, your blood glucose level is significantly high, and your BMI is also above the normal range, which increases your risk of developing type 2 diabetes.",
+      "next_steps": [
+        "Start tracking your blood glucose levels regularly to monitor your progress and make necessary adjustments to your diet and exercise routine.",
+        "Adopt a balanced diet that is low in sugar, salt, and unhealthy fats, and high in fruits, vegetables, whole grains, and lean protein sources.",
+        "Engage in at least 150 minutes of moderate-intensity aerobic exercise, or 75 minutes of vigorous-intensity aerobic exercise, or a combination of both, per week, and incorporate strength-training exercises into your routine at least twice a week."
+      ],
+      "evidence": [
+        {
+          "source": "WHO2",
+          "quote": "Diet is a basic part of management in every case."
+        },
+        {
+          "source": "ICMR",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes."
+        },
+        {
+          "source": "ICMR",
+          "quote": "Fasting Plasma Glucose (mg/dl) > 125"
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 280.0,
+      "BloodPressure": 185.0,
+      "SkinThickness": 45.0,
+      "Insulin": 300.0,
+      "BMI": 45.0,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 55,
+      "min_similarity": 0.975,
+      "case_id": "CASE_5bb93642"
+    },
+    "index": 5
+  },
+  "CASE_253c4735": {
+    "case_id": "CASE_253c4735",
+    "timestamp": "2025-11-03T15:54:13.123982",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "low_risk",
+    "synopsis": {
+      "risk_level": "low_risk",
+      "confidence": 0.35840603709220886,
+      "conclusion": "You have a high glucose level, which may indicate prediabetes or diabetes. Don't worry, with some lifestyle changes, you can manage your condition effectively. It's essential to focus on a balanced diet, regular physical activity, and monitoring your blood glucose levels.",
+      "next_steps": [
+        "Start tracking your daily food intake and physical activity using a food diary or a mobile app. This will help you identify patterns and make informed decisions about your diet and exercise routine.",
+        "Aim to eat a balanced diet that includes plenty of fruits, vegetables, whole grains, and lean protein sources. Limit your intake of sugary drinks, refined carbohydrates, and saturated fats.",
+        "Begin with short walks of 30 minutes, 3-4 times a week, and gradually increase the duration and frequency as you become more comfortable. You can also incorporate other physical activities, such as cycling or swimming, to keep things interesting."
+      ],
+      "evidence": [
+        {
+          "source": "ICMR",
+          "quote": "FPG < 110 < 100 2-h PG < 140 \u2265 200 HbA1c < 5.7% \u2265 6.5% \u2265 200"
+        },
+        {
+          "source": "WHO2",
+          "quote": "Diet is a basic part of management in every case."
+        },
+        {
+          "source": "ICMR",
+          "quote": "Daily physical activity and exercise"
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 380.0,
+      "BloodPressure": 105.0,
+      "SkinThickness": 8.0,
+      "Insulin": 2.0,
+      "BMI": 16.2,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 0,
+      "min_similarity": 0.975,
+      "case_id": "CASE_253c4735"
+    },
+    "index": 6
+  },
+  "CASE_c134e1a3": {
+    "case_id": "CASE_c134e1a3",
+    "timestamp": "2025-11-03T16:03:24.300346",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.99,
+      "conclusion": "You are at high risk of developing diabetes, and it's essential to take immediate action to prevent this condition. Based on your data, a Type 1 diabetes pattern has been detected, which is a serious condition that requires careful management.",
+      "next_steps": [
+        "Start tracking your blood sugar levels regularly to monitor your progress and identify any patterns or fluctuations.",
+        "Make healthy dietary changes, such as increasing your intake of fruits, vegetables, and whole grains, and reducing your consumption of sugary drinks and processed foods.",
+        "Engage in regular physical activity, such as walking or jogging, for at least 30 minutes a day to improve your insulin sensitivity and overall health."
+      ],
+      "evidence": [
+        {
+          "source": "WHO2",
+          "quote": "None"
+        },
+        {
+          "source": "WHO1",
+          "quote": "Proportion of people with diabetes who have been diagnosed with diabetes based on WHO or national guidelines."
+        },
+        {
+          "source": "WHO1",
+          "quote": "Risk factors for diabetes 29. Physical inactivity prevalence 30. Overweight and obesity prevalence"
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 310.0,
+      "BloodPressure": 0.0,
+      "SkinThickness": 0.0,
+      "Insulin": 5.0,
+      "BMI": 17.5,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 22,
+      "min_similarity": 0.975,
+      "case_id": "CASE_c134e1a3"
+    },
+    "index": 0
+  },
+  "CASE_69ca0698": {
+    "case_id": "CASE_69ca0698",
+    "timestamp": "2025-11-03T16:04:29.009193",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.99,
+      "conclusion": "You are at high risk for developing diabetes, and it's essential to take immediate action to prevent this condition. Based on your data, a Type 1 diabetes pattern has been detected, which requires careful management to prevent complications.",
+      "next_steps": [
+        "Monitor your blood sugar levels regularly to ensure they are within a healthy range.",
+        "Maintain a healthy weight by following a balanced diet and engaging in regular physical activity.",
+        "Consult the World Health Organization's guidelines for diabetes management, which can be found on their website, to learn more about managing your condition."
+      ],
+      "evidence": [
+        {
+          "source": "WHO2",
+          "quote": "Participants at the First WHO Regional Meeting on Diabetes Mellitus (December 1992) and the Regional Consultation on Diabetes Management and Control (July 1994):"
+        },
+        {
+          "source": "WHO1",
+          "quote": "Existence of national guidelines for diabetes management Indicator name Existence of national guidelines for diabetes management Purpose To assess the availability of governance mechanisms for diabetes management."
+        },
+        {
+          "source": "WHO1",
+          "quote": "Proportion of people with diabetes who have been diagnosed with diabetes based on WHO or national guidelines."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 295.0,
+      "BloodPressure": 0.0,
+      "SkinThickness": 0.0,
+      "Insulin": 10.0,
+      "BMI": 18.2,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 0,
+      "min_similarity": 0.975,
+      "case_id": "CASE_69ca0698"
+    },
+    "index": 1
+  },
+  "CASE_e5ab6a5c": {
+    "case_id": "CASE_e5ab6a5c",
+    "timestamp": "2025-11-03T16:05:12.235244",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.99,
+      "conclusion": "You are at a high risk of developing diabetes, and it's essential to take immediate action to prevent this condition. Based on your data, a Type 1 diabetes pattern has been detected, which is a serious condition that requires careful management.",
+      "next_steps": [
+        "Monitor your blood glucose levels regularly to track any changes and identify potential issues early on.",
+        "Make healthy lifestyle choices, such as eating a balanced diet and engaging in regular physical activity, to reduce your risk of developing diabetes.",
+        "Consult the World Health Organization's guidelines on diabetes prevention and control to learn more about managing your condition and preventing complications."
+      ],
+      "evidence": [
+        {
+          "source": "WHO2",
+          "quote": "Participants at the First WHO Regional Meeting on Diabetes Mellitus (December 1992) and the Regional Consultation on Diabetes Management and Control (July 1994):"
+        },
+        {
+          "source": "WHO1",
+          "quote": "4. Existence of national guidelines for diabetes management Indicator name Existence of national guidelines for diabetes management Purpose To assess the availability of governance mechanisms for diabetes management."
+        },
+        {
+          "source": "WHO1",
+          "quote": "Proportion of people with diabetes who have been diagnosed with diabetes based on WHO or national guidelines."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 270.0,
+      "BloodPressure": 0.0,
+      "SkinThickness": 0.0,
+      "Insulin": 9.0,
+      "BMI": 19.0,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 19,
+      "min_similarity": 0.975,
+      "case_id": "CASE_e5ab6a5c"
+    },
+    "index": 2
+  },
+  "CASE_046abacd": {
+    "case_id": "CASE_046abacd",
+    "timestamp": "2025-11-03T16:06:37.496384",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.9887558817863464,
+      "conclusion": "You are at high risk of developing diabetes, and it's essential to take immediate action to prevent this condition. Your high glucose levels, BMI, and age are significant risk factors. You need to make lifestyle changes to manage your blood sugar levels and prevent complications.",
+      "next_steps": [
+        "Start tracking your blood sugar levels regularly to monitor your progress and make necessary adjustments to your diet and exercise routine.",
+        "Follow a healthy diet that includes plenty of fruits, vegetables, whole grains, and lean protein sources. Aim to limit your intake of sugary drinks and foods high in saturated fats.",
+        "Engage in regular physical activity, such as walking or jogging, for at least 30 minutes a day to help manage your blood sugar levels and maintain a healthy weight."
+      ],
+      "evidence": [
+        {
+          "source": "WHO2",
+          "quote": "- self-monitoring and significance of results and actions to be taken - how to cope with emergencies (illness, hypoglycaemia) - how to avoid complications and detect them at an early stage, e.g. how to take care of the feet."
+        },
+        {
+          "source": "ICMR",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        },
+        {
+          "source": "ICMR1",
+          "quote": "Balanced diet including all food groups."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 185.0,
+      "BloodPressure": 150.0,
+      "SkinThickness": 0.0,
+      "Insulin": 130.0,
+      "BMI": 33.0,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 52,
+      "min_similarity": 0.975,
+      "case_id": "CASE_046abacd"
+    },
+    "index": 3
+  },
+  "CASE_4a4a5e7b": {
+    "case_id": "CASE_4a4a5e7b",
+    "timestamp": "2025-11-03T16:07:18.011147",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.9335457682609558,
+      "conclusion": "You are at high risk of developing diabetes, and it's essential to take immediate action to prevent this condition. Your high blood glucose levels, blood pressure, and BMI are major concerns. With consistent effort, you can make significant changes to your lifestyle and reduce your risk of developing diabetes.",
+      "next_steps": [
+        "Monitor your blood glucose levels regularly to track your progress and make necessary adjustments to your diet and exercise routine.",
+        "Follow a balanced diet that is low in saturated fats, cholesterol, and added sugars, and high in fiber, fruits, and vegetables.",
+        "Engage in regular physical activity, such as walking or jogging, for at least 30 minutes a day to help lower your blood pressure and improve your insulin sensitivity."
+      ],
+      "evidence": [
+        {
+          "source": "WHO2",
+          "quote": "Diet is a basic part of management in every case."
+        },
+        {
+          "source": "ICMR",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 210.0,
+      "BloodPressure": 160.0,
+      "SkinThickness": 0.0,
+      "Insulin": 100.0,
+      "BMI": 31.0,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 45,
+      "min_similarity": 0.975,
+      "case_id": "CASE_4a4a5e7b"
+    },
+    "index": 4
+  },
+  "CASE_d88575aa": {
+    "case_id": "CASE_d88575aa",
+    "timestamp": "2025-11-03T16:08:20.390848",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.9712545275688171,
+      "conclusion": "You have a high risk of developing diabetes, and it's essential to take immediate action to prevent this condition. Your high glucose levels and BMI indicate that you're at risk of developing type 2 diabetes.",
+      "next_steps": [
+        "Start tracking your glucose levels and BMI regularly to monitor any changes.",
+        "Begin a balanced diet that includes complex carbohydrates, fiber-rich foods, and lean protein sources.",
+        "Engage in at least 150 minutes of moderate-intensity aerobic exercise or 75 minutes of vigorous-intensity aerobic exercise per week."
+      ],
+      "evidence": [
+        {
+          "source": "WHO2",
+          "quote": "Diet is a basic part of management in every case."
+        },
+        {
+          "source": "ICMR",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes."
+        },
+        {
+          "source": "ICMR",
+          "quote": "Fasting Plasma Glucose (mg/dl) > 125 is considered prediabetes."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 190.0,
+      "BloodPressure": 145.0,
+      "SkinThickness": 0.0,
+      "Insulin": 0.0,
+      "BMI": 36.0,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 60,
+      "min_similarity": 0.975,
+      "case_id": "CASE_d88575aa"
+    },
+    "index": 5
+  },
+  "CASE_a5a7eabc": {
+    "case_id": "CASE_a5a7eabc",
+    "timestamp": "2025-11-03T16:17:15.659456",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.99,
+      "conclusion": "You have a high risk of developing diabetes, and it's essential to take proactive steps to manage your health. Based on your data, it appears that you may be at risk for Type 1 diabetes, but further testing is needed to confirm this.",
+      "next_steps": [
+        "Start tracking your blood glucose levels regularly to monitor your progress and identify any patterns or fluctuations.",
+        "Begin incorporating more complex carbohydrates, such as whole grains and vegetables, into your diet to help regulate your blood sugar levels.",
+        "Engage in at least 30 minutes of moderate-intensity physical activity, such as brisk walking, most days of the week to improve your insulin sensitivity and overall health."
+      ],
+      "evidence": [
+        {
+          "source": "WHO2",
+          "quote": "Diet is a basic part of management in every case."
+        },
+        {
+          "source": "WHO1",
+          "quote": "Proportion of people with diabetes who have been diagnosed with diabetes based on WHO or national guidelines."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 260.0,
+      "BloodPressure": 0.0,
+      "SkinThickness": 20.0,
+      "Insulin": 14.0,
+      "BMI": 18.9,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 23,
+      "min_similarity": 0.975,
+      "case_id": "CASE_a5a7eabc"
+    },
+    "index": 6
+  },
+  "CASE_2e0d87c4": {
+    "case_id": "CASE_2e0d87c4",
+    "timestamp": "2025-11-05T04:49:50.058823",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.9940400123596191,
+      "conclusion": "You have a high risk of developing diabetes, with a glucose level of 180.0 mg/dl, which is above the recommended target. It's essential to take immediate action to manage your blood sugar levels and prevent complications.",
+      "next_steps": [
+        "Start tracking your glucose levels regularly to monitor your progress and make informed decisions about your diet and exercise routine.",
+        "Begin a balanced diet that includes plenty of fruits, vegetables, whole grains, and lean protein sources, and limit your intake of sugary drinks and refined carbohydrates.",
+        "Engage in regular physical activity, such as brisk walking, cycling, or swimming, for at least 150 minutes per week to improve your insulin sensitivity and overall health."
+      ],
+      "evidence": [
+        {
+          "source": "WHO - Self-monitoring guidance",
+          "quote": "Self-monitoring of blood glucose is an essential part of diabetes management."
+        },
+        {
+          "source": "ICMR - Management of Type 2 Diabetes",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 180.0,
+      "BloodPressure": 0.0,
+      "SkinThickness": 0.0,
+      "Insulin": 0.0,
+      "BMI": 32.0,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 0,
+      "min_similarity": 0.975,
+      "case_id": "CASE_2e0d87c4"
+    },
+    "index": 0
+  },
+  "CASE_2f627a74": {
+    "case_id": "CASE_2f627a74",
+    "timestamp": "2025-11-05T05:03:57.032079",
+    "model_versions": {
+      "classifier": "xgboost-v1.0",
+      "embedding": "all-MiniLM-L6-v2",
+      "llm": "mixtral-8x7b-32768"
+    },
+    "outcome": "high_risk",
+    "synopsis": {
+      "risk_level": "high_risk",
+      "confidence": 0.9931256771087646,
+      "conclusion": "You have a high risk of developing diabetes, and it's essential to take immediate action to prevent this condition. Your glucose levels are higher than normal, and your BMI is above the healthy range, which increases your risk. I recommend you follow a healthy lifestyle to manage your risk factors.",
+      "next_steps": [
+        "Start tracking your glucose levels regularly to monitor your progress and make adjustments to your diet and exercise routine as needed.",
+        "Begin a balanced diet that includes plenty of fruits, vegetables, whole grains, and lean protein sources. Aim to limit your intake of sugary drinks and foods high in saturated fats.",
+        "Engage in regular physical activity, such as brisk walking, cycling, or swimming, for at least 150 minutes per week to help improve your insulin sensitivity and overall health."
+      ],
+      "evidence": [
+        {
+          "source": "WHO - Self-monitoring guidance",
+          "quote": "Self-monitoring of blood glucose is essential for people with diabetes to understand their glucose levels and make informed decisions about their diet and exercise routine."
+        },
+        {
+          "source": "ICMR - Management of Type 2 Diabetes",
+          "quote": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications."
+        }
+      ]
+    },
+    "data": {
+      "Pregnancies": 0,
+      "Glucose": 180.0,
+      "BloodPressure": 0.0,
+      "SkinThickness": 0.0,
+      "Insulin": 15.0,
+      "BMI": 32.0,
+      "DiabetesPedigreeFunction": 0.0,
+      "Age": 0,
+      "min_similarity": 0.975,
+      "case_id": "CASE_2f627a74"
+    },
+    "index": 1
   }
 }

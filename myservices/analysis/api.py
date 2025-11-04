@@ -9,14 +9,12 @@ import numpy as np
 import asyncio
 from dotenv import load_dotenv
 
-load_dotenv()  # load .env variables
+load_dotenv()  
 
-# Add project root to path
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 
-# --- Memory & Embedding ---
 from diabetes_services.memory.utils import CaseMemoryManager
 from sentence_transformers import SentenceTransformer
 
@@ -74,51 +72,46 @@ Retrieved Medical Guidelines:
         context += f"\nChunk {i}:\nDocument: {chunk['doc_id']}\nPage: {chunk.get('page_num', 'N/A')}\nContent: {chunk['text']}\n"
 
     system_prompt = """You are an AI health specialist trained to give expert, actionable advice about diabetes based on patient data and clinical guidelines.
-    You must act as the medical expert and directly advise the patient — do not refer them to a doctor, clinic, or medical professional. 
-    You are giving the steps yourself.
+    You must act as the medical expert and directly advise the patient — do not refer them to a doctor, clinic, or medical professional. You are giving the steps yourself.
+
+    If the patient's data suggests a likely type of diabetes (Type 1, Type 2, or prediabetes), mention it clearly and explain its implications in the 'understanding' or 'conclusion' sections.
 
     Output must be a single valid JSON object following exactly this schema:
 
     {
-        "conclusion": "Empathetic summary addressing the patient directly (use 'you' language)",
-        "lifestyle_summary": "One short paragraph summarizing their current health and what consistent effort will do for them — must sound human and longitudinal",
+        "conclusion": "Empathetic summary addressing the patient directly (use 'you' language', and mention the likely type of diabetes if identifiable)",
+        "wellness_overview": "Short paragraph summarizing their current health status and long-term wellness focus. Keep tone supportive and human.",
         "understanding": [
-            "Clear explanation of what the test results mean in simple terms",
-            "Short, direct description of what this means for their health"
+            "Explain what the test results mean in simple terms",
+            "Briefly describe what this means for their health"
         ],
         "next_steps": [
-            "3 specific, concrete steps the patient should take (e.g., adjust diet, exercise, track levels)",
-            "Each step must be actionable and measurable",
-            "Do not include phrases like 'consult your doctor' or 'seek medical advice'"
+            "3 concrete steps the patient should take (e.g., exercise, diet, glucose tracking)"
         ],
         "lifestyle_changes": [
-            "Practical daily habits the patient can start right away",
-            "Realistic health goals (e.g., 'walk 30 minutes daily', 'keep BMI under 25')"
+            "Daily routines or practical habits the patient can start now"
         ],
         "sources": [
             {
-                "doc_id": "Source document ID",
-                "page": "Page number as integer if available",
+                "title": "Concise source title (e.g., WHO - Self-monitoring guidance)",
                 "quote": "Relevant quote from medical guidelines",
-                "explanation": "Explain this quote in simple patient-friendly language"
+                "explanation": "Explain this quote simply"
             }
         ]
     }
 
     Style rules:
-    1. Use 'you' or 'your' language throughout.
-    2. Write as if you are the medical expert giving the advice directly.
-    3. Keep all explanations short, clear, and confident.
-    4. Provide exactly 3 next_steps that the patient can follow immediately.
-    5. Never say 'consult your doctor', 'seek help', 'medical professional', or 'medication'.
-    6. Never recommend or name any specific drug or dosage.
-    7. Be encouraging, supportive, and confident.
-
-    Respond with ONLY a JSON object — no markdown, no extra text."""
+    1. Use 'you' and 'your' language throughout.
+    2. Avoid medical jargon and keep tone encouraging.
+    3. Always give exactly 3 'next_steps'.
+    4. Never recommend medication or mention doctors.
+    5. Be concise and supportive.
+    6. Respond with ONLY a JSON object — no markdown, no extra text."""
 
 
 
-    # Format context to encourage JSON response
+
+
     formatted_context = f"""Analyze the following patient data and provide recommendations in JSON format only:
 
 Patient Data: {json.dumps(patient_data, indent=2)}
@@ -133,9 +126,9 @@ Remember: Respond with ONLY a JSON object. No other text or formatting."""
             {"role": "user", "content": formatted_context}
         ],
         model="llama-3.1-8b-instant",
-        temperature=0.2,  # Reduced temperature for more consistent formatting
+        temperature=0.2,  
         max_tokens=2048,
-        response_format={"type": "json_object"}  # Request JSON response explicitly
+        response_format={"type": "json_object"}  
     )
 
     chat_content = completion.choices[0].message.content.strip()
@@ -143,19 +136,14 @@ Remember: Respond with ONLY a JSON object. No other text or formatting."""
         raise HTTPException(status_code=500, detail="Groq returned empty response")
 
     try:
-        # First try direct JSON parsing
         result = json.loads(chat_content)
     except json.JSONDecodeError:
         try:
-            # Extract JSON from the response
             if '```json' in chat_content:
-                # Extract from markdown code block
                 json_text = chat_content.split('```json')[1].split('```')[0].strip()
             elif '`json' in chat_content:
-                # Extract from inline code block
                 json_text = chat_content.split('`json')[1].split('`')[0].strip()
             else:
-                # Try to find JSON structure by brackets
                 start_idx = chat_content.find('{')
                 end_idx = chat_content.rfind('}') + 1
                 if start_idx >= 0 and end_idx > start_idx:
@@ -163,7 +151,6 @@ Remember: Respond with ONLY a JSON object. No other text or formatting."""
                 else:
                     raise ValueError("No JSON structure found in response")
             
-            # Try parsing the extracted JSON
             result = json.loads(json_text)
             
         except Exception as inner_e:
@@ -181,7 +168,7 @@ Remember: Respond with ONLY a JSON object. No other text or formatting."""
         )
         
     # Ensure all required fields are present
-    required_fields = ['conclusion','lifestyle_summary','understanding', 'next_steps', 'lifestyle_changes', 'sources']
+    required_fields = ['conclusion','wellness_overview','understanding', 'next_steps', 'lifestyle_changes', 'sources']
     missing_fields = [field for field in required_fields if field not in result]
     if missing_fields:
         raise HTTPException(
@@ -200,13 +187,13 @@ def build_search_query(patient_data: dict, classifier_output: dict) -> str:
     risk_level = classifier_output.get("prediction", "unknown")
     top_features = classifier_output.get("top_features", [])
 
-    # Use top SHAP features if available, else default
+    # Use top SHAP features 
     if top_features and all(isinstance(f, str) for f in top_features):
         selected_features = top_features[:3]
     else:
         selected_features = ["BMI", "BloodPressure", "Glucose"]
 
-    # Build human-readable feature parts (e.g., "BMI 26.4", "Glucose 145")
+ 
     feature_parts = []
     for feat in selected_features:
         val = patient_data.get(feat)
@@ -215,7 +202,6 @@ def build_search_query(patient_data: dict, classifier_output: dict) -> str:
         else:
             feature_parts.append(f"{feat.replace('_', ' ').lower()} N/A")
 
-    # Combine everything into a meaningful query
     query = " ".join([
         f"guidelines for {risk_level} diabetes patient",
         *feature_parts
@@ -229,32 +215,37 @@ async def analyze_case(patient_data: PatientData):
     try:
         data_dict = patient_data.dict()
 
-        # 1️⃣ Embedding
         case_summary = f"BMI {data_dict['BMI']}, BP {data_dict['BloodPressure']}, Glucose {data_dict['Glucose']}, Age {data_dict['Age']}"
         embedding = encoder.encode([case_summary])[0]
         embedding_np = np.array(embedding, dtype=np.float32).reshape(1, -1)
 
-        # 2️⃣ FAISS dimension check
         import faiss
         expected_dim = embedding_np.shape[1]
         if getattr(memory_manager.index, "d", None) != expected_dim:
             memory_manager.index = faiss.IndexFlatL2(expected_dim)
             memory_manager.cases = []
 
-        # 3️⃣ Query memory
         similar_cases = memory_manager.query_similar_cases(embedding_np, k=2, min_similarity=data_dict['min_similarity'])
 
-        # 4️⃣ Classifier output
-        classifier_output = predict_risk(data_dict)
-        classifier_output['probability'] = float(classifier_output['probability'])  # ensure float for JSON
+        # --- Handle cases with no biomarker input ---
+        numeric_fields = ["Pregnancies", "Glucose", "BloodPressure", "SkinThickness", "Insulin", "BMI", "DiabetesPedigreeFunction", "Age"]
+        if all((data_dict.get(f, 0) == 0 or data_dict.get(f) is None) for f in numeric_fields):
+                return jsonable_encoder({
+                    "message": (
+                        "No biomarker data detected.\n\n"
+                        "Please provide numeric values or upload a table image with biomarkers "
+                        "so I can analyze your diabetes risk and offer tailored insights."
+                    )
+                })
 
-        # Return cached result if available
+        classifier_output = predict_risk(data_dict)
+        classifier_output['probability'] = float(classifier_output['probability']) 
+
         if similar_cases:
             cached_case = similar_cases[0]
             if cached_case.get('synopsis') and cached_case['outcome'] == classifier_output['prediction']:
                 syn = cached_case['synopsis']
 
-                # --- Ensure message format matches non-cached responses ---
                 recommended_actions = "\n".join([f"{i+1}. {step}" for i, step in enumerate(syn.get("next_steps", []))])
                 sources = ', '.join([src['quote'] for src in syn.get("evidence", []) if src.get('quote')])
                 message = (
@@ -269,7 +260,6 @@ async def analyze_case(patient_data: PatientData):
                     "message": message
                 })
 
-        # 5️⃣ Full analysis
         model_versions = {"classifier": "xgboost-v1.0", "embedding": "all-MiniLM-L6-v2", "llm": "mixtral-8x7b-32768"}
         query = build_search_query(data_dict, classifier_output)
         retrieved_chunks = await search_guidelines(query)
@@ -279,20 +269,26 @@ async def analyze_case(patient_data: PatientData):
         # --- Safe evidence extraction ---
         sources_list = groq_analysis.get("sources", [])
         evidence = []
+
         for src in sources_list:
             if isinstance(src, dict):
-                evidence.append({"source": src.get("doc_id", ""), "quote": str(src.get("quote", ""))})
+                source_title = src.get("title") or src.get("doc_id", "Unknown Source")
+                quote = str(src.get("quote", "")).strip()
+                evidence.append({
+                    "source": source_title,
+                    "quote": quote
+                })
             elif isinstance(src, str):
-                evidence.append({"source": "", "quote": str(src)})
+                evidence.append({"source": "General Guideline", "quote": str(src)})
 
-        # --- Ensure next_steps is always a list of strings ---
+
         next_steps = groq_analysis.get("next_steps", [])
         if isinstance(next_steps, str):
             next_steps = [next_steps]
         elif not isinstance(next_steps, list):
             next_steps = []
 
-        # 6️⃣ Create synopsis
+
         synopsis = {
             "risk_level": classifier_output["prediction"],
             "confidence": classifier_output["probability"],
@@ -301,7 +297,7 @@ async def analyze_case(patient_data: PatientData):
             "evidence": evidence
         }
 
-        # 7️⃣ Store in memory
+        # Store in memory
         case_id = memory_manager.upsert_case(
             case_data=data_dict,
             embedding=embedding_np,
@@ -327,7 +323,7 @@ async def analyze_case(patient_data: PatientData):
         message = (
             f"Diabetes Risk Assessment: {synopsis['risk_level'].replace('_', ' ').title()}\n\n"
             f"Summary: {synopsis['conclusion']}\n\n"
-            f"Lifestyle Summary: {groq_analysis.get('lifestyle_summary', 'No lifestyle summary provided.')}\n\n"
+            f"Wellness Overview: {groq_analysis.get('wellness_overview', 'No wellness insights provided.')}\n\n"
             f"Recommended Actions:\n{recommended_actions}"
         )
 

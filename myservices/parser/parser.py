@@ -24,7 +24,6 @@ class MedicalTableParser:
         """
         self.use_advanced_model = use_advanced_model
 
-        # Define expected fields and their ranges
         self.field_definitions = {
             "Pregnancies": {"patterns": ["pregnancies"], "range": (0, 20)},
             "Glucose": {"patterns": ["glucose"], "range": (0, 500)},
@@ -92,7 +91,6 @@ class MedicalTableParser:
     def _parse_with_tesseract(self, image_input: Union[str, Image.Image]) -> Dict[str, Any]:
         """Parse an image table using Tesseract OCR."""
         try:
-            # ✅ Open image correctly depending on input type
             if isinstance(image_input, str):
                 if not os.path.exists(image_input):
                     raise FileNotFoundError(f"Image path not found: {image_input}")
@@ -102,29 +100,28 @@ class MedicalTableParser:
             else:
                 raise TypeError(f"Invalid image input type: {type(image_input)}")
 
-            # ✅ Perform OCR
+  
             text = pytesseract.image_to_string(image, config="--psm 6")
             lower_text = text.lower()
 
             print(f"\n===== OCR OUTPUT =====\n{text}\n=======================\n")
 
-            # 🩺 Try to extract biomarkers directly from OCR text (handles messy tables too)
+           
             extracted = self._extract_fields_from_text(lower_text)
             if any(value is not None for value in extracted.values()):
-                print("✅ Extracted biomarkers directly from OCR text.")
+                print("Extracted biomarkers directly from OCR text.")
                 return extracted
 
-            # 🧾 If that fails, fall back to table-like parsing
             lines = [line.strip() for line in text.splitlines() if line.strip()]
             if len(lines) < 2:
-                print("⚠️ Not enough lines detected by OCR.")
+                print("Not enough lines detected by OCR.")
                 return extracted or self._empty_result()
 
             data = [re.split(r"\s+", line) for line in lines]
             df = pd.DataFrame(data[1:], columns=data[0]) if len(data) > 1 else pd.DataFrame()
 
             if df.empty:
-                print("⚠️ DataFrame is empty after parsing OCR output.")
+                print("DataFrame is empty after parsing OCR output.")
                 return extracted or self._empty_result()
 
             print("\n===== PARSED DATAFRAME =====")
